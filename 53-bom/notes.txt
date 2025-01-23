@@ -1,0 +1,31 @@
+BOM is an object model.which has key value pairs.This object is created by browser owners.whenever any company create its browsers (like chrome by google)then they make its object has name `window` and has some things in it(like methods) by which we can interact with browser(this is also defination of BOM).
+like window.location interact our url. 
+but we can directly call its browser like except Window.location we can directly call location in brower.
+
+
+location has properties like hash,host,hoasname,href,origin,pathname,port,protols,reload etc.
+like window.location.reload() is for reload the web page in which we are staying.
+we can reload page with this on some particular events.
+location.href give us current url.
+by location.href="an-file-name.hrml" we can open any page in current url that is available on server. we can chenge current url with this. it open new file after adding "/" in current url. like if we are on 
+http://localhost:5501/53-bom and write location.href="notes.txt" then it opens notes.txt neext this url like http://localhost:5501/53-bom/notes.txt on same domain.
+but if we give  like in form of http:
+location.href="https://www.w3schools.com/" then react at location with out staying in same domain without "/".
+if we write "location.href="https://www.w3schools.com/" then we would not able to open our page insted we directly reach at https://www.w3schools.com/ on every opoening of out website.
+
+form window.history object we can know our brower history which pages we opened. 
+like from history.length,
+we can also know how much pages are forware and how much pages are bacword remains by using history.forward() and by using history.back(). if no pages remian in forware or backware remian it gives us undefined.
+we can also jump with history.go(3).
+we can also find the height and width of current opeinging window in browser with window.innerHeight and window.innerWidth() but it give correct when we keep it zome on 100% exact.we can also find outer height and outer width with window.outerHeight and window.outerWidth().
+
+window.open() open a new tab and return us the new tab's window object.
+note:- every tab has own differnent window object.and each tab's variable belong to its tab, not any other tab.
+window.open() we can open any thing in new tabs and its ref in  url with window.open("https://www.w3schools.com/") in new tab.like window.open("https://www.w3schools.com/") open website.we can also pass second parameter in like for name : window.open("https://www.w3schools.com/",""); thats why we should not write name variable,because variable always exist in browser.by default name is empty in tab.
+
+window.close() for closing tab,but only those tabs thats are created with script.
+
+widnow.resizeTo() for resizing window but only those that is created by window.open("","","reszeable") only.
+
+
+remember DOM and BOM are part of web api not core javascript.web api means we interact with browser or website with the help of javascript that way provide by browser called web api.
