@@ -1,0 +1,72 @@
+getting elements by like .children[0].children[0] is very difficult.we can get it by 
+document.getElementsByTagName('img') and ans in the form of HTMLCollection(3) [img, img, img].
+document also has by default property document.images
+when we get elements by  document.getElementsByTagName('h2') it gives use elements in array which we can get 
+by indexing document.getElementsByTagName('h2')[0]. This thing give us elements as HTMLCollection like this:- 
+HTMLCollection(3) [img, img, img]
+we can also add any element a class like```  
+<img
+      src="./html-css-javascript.png"
+      alt="html-css-javascript"
+      style="width: 100%; max-width: 600px"
+      title="Frontend Roadmap"
+      class="css-image"
+    />```and get it by ```document.getElementsByClassName("css-image").
+    we can also get multiple elements by adding same class on multiple.
+
+    document.querySelector is better than three like class,id or tag.
+    document.querySelector("#css-image").
+    document.querySelector("") always return single element only which it finds first.
+    we can also find accorfing to tag name ```document.querySelector("div");``` with querySelector.
+    document.querySelectorAll(".css-image") give us all elements but in NodeList[] not in HTMLCollection.
+
+
+what is diff b/w nodeList and HTMLCollection in dom object?
+Ans:-Here are the key differences between NodeList and HTMLCollection in the DOM:
+
+Type of Elements:
+
+NodeList: Can contain any type of nodes (elements, text nodes, comments, etc.).
+HTMLCollection: Contains only element nodes.
+Live vs Static:
+
+NodeList: Can be either live or static. For example, document.querySelectorAll returns a static NodeList, while Node.childNodes returns a live NodeList.
+HTMLCollection: Always live, meaning it automatically updates when the document changes.
+Access Methods:
+
+NodeList: Can be accessed using an index (like an array) and has a forEach method.
+HTMLCollection: Can be accessed using an index (like an array) and also by the element's name or id.
+Conversion:
+
+Both NodeList and HTMLCollection can be converted to an array using Array.from() or the spread operator [...collection].
+Example:
+// NodeList example
+const nodeList = document.querySelectorAll('div');
+nodeList.forEach(node => console.log(node));
+
+// HTMLCollection example
+const htmlCollection = document.getElementsByClassName('example');
+Array.from(htmlCollection).forEach(element => console.log(element));
+
+In summary, NodeList is more general and can contain different types of nodes, while HTMLCollection is specific to element nodes and is always live.
+
+we can directly use array methods in nodeList but in htmlCollection first we convert it into array with Array.from(htmlCollection).
+
+
+We can also add query selector in particular element instead of document.querySelector 
+e.g:-
+
+const ul=document.querySelector("ul")
+console.log("ul",ul)
+console.log(ul.querySelector("ol"))
+
+We can also find other metods like getElementsByClassName or getElementsByTagName in small elements object but not getElementById.
+e.g:- 
+
+console.log(ul.getElementsByClassName(".para"))
+console.log(ul.getElementsByTagName("<p>"))
+
+we can also get address of any element of DOM with 
+click on any element in elements tab which is left console and right click on particular element
+element>copy>copy JS path. by click on this we can get copy of any element in dom which is provided by browser.
+
