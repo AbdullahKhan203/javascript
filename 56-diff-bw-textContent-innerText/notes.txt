@@ -1,0 +1,57 @@
+What is diff b/w innerContent and innerText?
+
+ANs:-innerText:- Inner text give us ony inner text by removing all tags.only innerText.innerText effects with visibility hidden.
+InnerHtml gives us all HTML i.e text with tags.textContent give us only text with new line /n details also give us the space as it is d:none does not effect on textContent. 
+example of innerHTML in a tag :-
+ <b>Frontend development</b> is the development of the\n      <a href="https://en.wikipedia.org/wiki/Graphical_user_interface" target="_blank" title="Graphical user interface">graphical user interface</a>\n      of a website, through the use of\n      <a target="_blank" href="https://en.wikipedia.org/wiki/HTML">HTML</a>,\n      <a target="_blank" href="https://en.wikipedia.org/wiki/CSS">CSS</a>, and\n      <a target="_blank" href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a>, so that users can view and interact with that website.
+
+
+ example of innerText in a tag :-
+ 'Frontend development is the development of the graphical user interface of a website, through the use of HTML, CSS, and JavaScript, so that users can view and interact with that website.'.
+
+
+
+example of textContent in a tag :-
+ ' \n      Frontend development is the development of the\n      graphical user interface\n      of a website, through the use of\n      HTML,\n      CSS, and\n      JavaScript, so that users can view and interact with that website.\n    '
+
+
+
+ Q:what is diff b/w visibility:hidden and opacity:0?
+ Ans:-visibility: hidden and opacity: 0 are both CSS properties used to hide elements, but they work differently:
+
+visibility: hidden: The element is hidden, but it still takes up space in the layout. It is not visible, but it is still part of the document flow.
+
+opacity: 0: The element is fully transparent (invisible), but it still takes up space in the layout and can still interact with events (like clicks).
+
+Here's an example to illustrate the difference:
+e.g:-
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.hidden {
+  visibility: hidden;
+}
+
+.transparent {
+  opacity: 0;
+}
+</style>
+</head>
+<body>
+
+<p class="hidden">This paragraph is hidden but still takes up space.</p>
+<p class="transparent">This paragraph is transparent but still takes up space and can be interacted with.</p>
+
+</body>
+</html>
+In summary:
+
+visibility: hidden hides the element but keeps its space.
+opacity: 0 makes the element invisible but keeps its space and interactivity.
+
+
+note:- textContent and innerText have more difference.
+
+
+

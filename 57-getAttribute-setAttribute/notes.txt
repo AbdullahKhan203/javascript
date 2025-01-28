@@ -1,0 +1,64 @@
+
+  every attribute has some property  and value.like
+ <a> is tag, href is attribute and "https://www.google.co.uk/" is a value.
+<a href="https://www.google.co.uk/"></a>
+
+
+we can aslo add attribute by ourself.
+like :-<h2 hello="world" procoder="khan"></h2>,it is also considred as valid attribute. 
+we can also apply css through user defined attribute. like
+ <h1 procoder="khan">Backend development</h1>
+  [procoder]{
+      color:green;
+    }
+we can also give attribute without a value.like    
+<h1 procoder>Backend development</h1>
+<h1 procoder="khan">Backend development</h1>
+we can also do it in this way for any specific element.
+[procoder="khan"]{
+      color:green;
+    }
+
+    we can also get by document.querySelector("[procoder]") or document.querySelector("[procoder="khan"]").
+    we can also apply js according to userdefined attribute.
+    we can also know properties by clikc on tag in elements. and on below tab by click on properties we can know about properties which is third last on bottomm tab. then we can check on attributes:NamedNodeMap{}.
+
+    document.querySelector("[procoder]").attributes.procoder
+ans is :-> procoder="khan"
+procoder is iteself an object.we can also get value of procoder by procoder.value. 
+
+These all things are related about excessing element or or attribute.But we can also set attribute.
+like:-
+document.querySelector("[procoder]").getAttribute("procoder")
+'khan'.
+
+if attribute is false like
+    then we will get null.
+   ``` document.querySelector("[procoder]").getAttribute("hellow")
+null```
+
+
+
+document.querySelector("img").getAttribute('class')
+'css-image'
+we would set attribute by this method:-
+document.querySelector("h1").setAttribute("hello","ali")
+
+
+
+```document.querySelector("h1").setAttribute("_hi","gi")
+document.querySelector("[_hi]").style.color="pink"```
+
+note:- we can display a small pop up on hover on element with title.
+
+we can directly excess and update html common attributes like class,id like:-
+document.querySelector("h1").id="hello".
+this is because js keeps default popular attributes outside from attributes object of element. thats why we get id directly with querySelector("h1").id instead of querySelector("h1").attributes.id.
+But user defined attributes found in attributes object.
+
+
+
+
+
+
+
