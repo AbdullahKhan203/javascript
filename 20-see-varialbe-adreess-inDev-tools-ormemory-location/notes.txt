@@ -1,0 +1,303 @@
+normal programmer think that in js when we assign variable by its name, then a space in memory assign a name and keep undefined in memory,until we put value in undefined place.
+but it is not correct,in reality,
+Variable has not its actual value, he has its reference-address of value.We can watch its address value in dev tools.
+remember:- address change in evry run of project.
+ for example if we create variables:-
+
+ const firstName="Akash";
+const userAge=24;
+const isGraguate=false;
+
+in this lec, we will visualize how variable adrees look like actually,how 
+it would use here?
+
+
+Q:-How we watch address of variable?
+In reach console, the its right side "Sources" then,open js file here in sources,then apply debugger,by clicking on particular varialbe line,we would watch the execution line by line. and by clicking on memory tab in bottom take snapshot button, then we would watch our variables address in system/context object.
+system/context object has too much alues we would find our variable reference by searching its value.
+note:- we open search bar by ctrl + F. 
+by searching value "Akash". we would get 
+``firstNameinsystem / Context@802609`` in below tab "Retainers".
+ Ans when we click on reference @802609 in search 
+then we would get context where our varialbes are stored 
+system / context.
+```isGraguate::system / Oddball@75
+2
+280 %	280 %	
+firstName::"Akash"@55803
+6
+200 %	200 %	
+lastName::"Kumar"@68247
+```
+this is address of bolean:- Oddball@75
+this is address of Akash:-@55803
+this is address of Kumar:-@682473
+
+when we put akash in firstName then actually akish string's address would put in firstName instead of string itself.
+if we search akash address ```@55803 ``` then we will find akash in string section like this ```"Akash"@55803```. 
+similarly if we search "Kumar". then we would get 
+```lastNameinsystem / Context@802609``` in retainers.
+@802609 is actually address of Kumar in memory.
+if we search this @802609 on memory. then we would find context in system/context in which our variables are stored.
+In context we would watch 
+```lastName::"Kumar"@68247```
+here @68247 is address of Kumar is string section.
+from we would know that browser keeps all string with its adrees ```"Kumar"@68247```in its string section.
+similarly brower store other data types in other data types section.like seperate for bollean,undefined,null etc.
+note:-system/context address and string address are different.
+When we compare tow variables, then through their address their values are fetched.and then their values are compared actually.
+
+Mostly our memory tab not display unmbers in number section.actually it considred very small to numbers that why it does not numbers. 
+similarly boolean store in system group not boolean group.not in main system,but in system=> system / Oddball.
+When we  assign same boolean value to variable then it assign same address of old boolean to new boolean like
+const isGraguate=false;
+const isAdult=false;
+is we assign false to isAdult variable then its false value has same address that isGraguate have.
+
+<above content in more easy way start>
+Here's a more readable and easy-to-understand version of your content:  
+
+---
+
+### Understanding Variable Memory Allocation in JavaScript  
+
+Many programmers think that when we declare a variable in JavaScript, memory is allocated with the variable's name, and `undefined` is stored there until we assign a value. However, this is not entirely true.  
+
+In reality, **variables do not store actual values directly; they store a reference (memory address) to the value.** We can inspect these addresses using developer tools.  
+
+💡 **Note:** The memory address changes every time the project runs.  
+
+#### Example: Variable Declaration  
+```js
+const firstName = "Akash";
+const userAge = 24;
+const isGraduate = false;
+```
+In this lesson, we will visualize how variable addresses look in memory and how to inspect them.  
+
+---
+
+### 🔍 How to View the Memory Address of a Variable?  
+1. **Open Developer Tools (DevTools)**  
+   - Right-click on the webpage and select **"Inspect"**, or press `F12`.  
+   - Navigate to the **"Sources"** tab.  
+
+2. **Apply Debugger**  
+   - Open your JavaScript file in the **"Sources"** tab.  
+   - Click on the line number where the variable is declared to add a **debugger breakpoint**.  
+   - Run the code and observe execution step by step.  
+
+3. **View Memory Allocation**  
+   - Go to the **"Memory"** tab at the bottom.  
+   - Click **"Take Snapshot"** to capture memory usage.  
+   - Search for your variable's value using `Ctrl + F`.  
+
+---
+
+### 📌 Example of Variable References  
+If we search for `"Akash"`, we might find:  
+```
+firstName in system / Context@802609
+```
+This means `firstName` is stored in the system's context at memory address `@802609`.  
+
+If we click on this reference, we will find:  
+```
+firstName::"Akash"@55803
+```
+- `@55803` is the actual address of `"Akash"` in the **string section** of memory.  
+- Similarly, `"Kumar"` might have an address like `@68247`.  
+
+📌 **Important Observations:**  
+- **Boolean values** are stored in `system / Oddball`.  
+  ```
+  isGraduate::system / Oddball@75
+  ```
+- **Numbers** are usually not displayed in the number section because they are considered too small.  
+- If we assign the same boolean value (`false`) to multiple variables, they **share the same address** instead of creating a new one.  
+
+```js
+const isGraduate = false;
+const isAdult = false;
+```
+Both `isGraduate` and `isAdult` will reference the same memory address for `false`.  
+
+---
+
+### 🎯 Key Takeaways  
+✅ Variables store **references (addresses)**, not actual values.  
+✅ Strings are stored in a **separate string section** in memory.  
+✅ Boolean values are stored in `system / Oddball`, not in a separate boolean section.  
+✅ If two variables have the same boolean value, they **share the same memory address**.  
+✅ When comparing variables, JavaScript fetches their values using their **addresses** before performing the comparison.  
+
+By understanding how JavaScript manages memory, we can write **more efficient** and **optimized** code! 🚀
+<above content in more easy way end/>
+
+
+ If two variables have the same boolean value, they **share the same memory address**.
+for example:-
+In :- const firstName="Akash";
+const lastName="Kumar";
+const userAge=24;
+const isGraguate=false;
+const isAdult=false;
+
+isAdult::system / Oddball@75
+2
+280 %	280 %	
+isGraguate::system / Oddball@75 both false has same memory address.
+
+
+similarly if we assign same value to different variable 
+like ```const firstName="Akash";
+const firstName2="Akash";``` 
+then the both variable would have same address.
+in system / context:-
+firstName::"Akash"@55861
+6
+200 %	200 %	
+firstName2::"Akash"@55861
+
+but in string section it has same address like:-
+  "Akash"@55861. 
+  JavaScript does not assign different address for same variables values.
+
+But if we create varialbes like this :-
+const firstName="Akash";
+const firstName2="Aka"+"sh";
+
+then in that case address would be different. for example in system / context address is like:-
+firstName::"Akash"@55831
+6
+200 %	200 %	
+firstName2::"Akash"@1054583.
+this is because value is become by combining of "Aka" and "sh".this why it has different address.
+
+firstName==firstName2
+true
+these are are two variables that has same values but different address.
+If we assing boolean value true, then  it has same fixed Address @73.
+the address of undefined,null,true,false have fixed address in memory.
+if we assign 
+const myNull=null; 
+then this null would have fixed address @71.that can be share one or more places.
+undefined has fixed address @67.
+myEmptyString::""@77
+4
+120 %	120 %	
+myEmptyString2::""@77
+empty string has fixed address @77.
+note:- the values that can't be change again and again has same address.
+
+
+remember for understanding of non-primirive types,it is important to have undersanding of varialbe address.
+in case of non-primitve type address beome more importtant.because in non-prmitive when we compare then it is not compare values instead it compare address.
+In case of primitive variable address is not such important.You will not be able to do much by knowing address because address is different but when compare:-  
+const firstName="Akash";
+const firstName2="Aka"+"sh"; 
+firstName===firstName2
+true
+then it give us true,because is compare values instead of address.
+but in non-primitive types,then we realize the actual difference.Which is too much dependent on address.
+In non-primitive types address would be very useful.
+
+
+
+<above content in detail form start>
+Here's a clearer and more readable version of your content:  
+
+---
+
+### 🔍 Understanding Memory Address Sharing in JavaScript  
+
+In JavaScript, when two variables have the **same primitive value**, they **share the same memory address** instead of creating separate storage.  
+
+#### 📌 Example: Boolean Values Share the Same Address  
+```js
+const isGraduate = false;
+const isAdult = false;
+```
+Both `isGraduate` and `isAdult` store `false`, so they share the **same memory address** in the system:  
+```
+isGraduate::system / Oddball@75  
+isAdult::system / Oddball@75  
+```
+✅ This means JavaScript **does not create a new memory location** for the second `false` value. Instead, it reuses the existing one.  
+
+---
+
+### 📌 Example: Strings with the Same Value Share the Same Address  
+```js
+const firstName = "Akash";
+const firstName2 = "Akash";
+```
+Since both variables store the same string, they **share the same memory address** in both the **context** and **string section**:  
+```
+firstName::"Akash"@55861  
+firstName2::"Akash"@55861  
+```
+📌 JavaScript **does not assign a new memory address** for identical string values.  
+
+---
+
+### ❌ When Does JavaScript Assign a New Address?  
+If we create the same string using **concatenation**, the memory address will be different:  
+```js
+const firstName = "Akash";
+const firstName2 = "Aka" + "sh";
+```
+Now, `firstName` and `firstName2` **have different memory addresses**, even though they store the same value:  
+```
+firstName::"Akash"@55831  
+firstName2::"Akash"@1054583  
+```
+📌 This happens because `"Aka" + "sh"` is computed at runtime, so JavaScript **treats it as a new value and assigns a new address**.  
+
+---
+
+### 🎯 Comparison of Variables: Value vs. Address  
+✅ JavaScript compares **values** for **primitive types**:  
+```js
+console.log(firstName === firstName2); // true
+```
+Even though the memory addresses are different, JavaScript **compares the actual values**, so the result is `true`.  
+
+✅ JavaScript compares **addresses** for **non-primitive types**:  
+```js
+const obj1 = { name: "Akash" };
+const obj2 = { name: "Akash" };
+
+console.log(obj1 === obj2); // false
+```
+📌 Even though `obj1` and `obj2` have the **same value**, JavaScript sees them as **two separate objects** because they have different memory addresses.  
+
+---
+
+### 📌 Fixed Memory Addresses for Certain Values  
+Some values always have **fixed addresses** in memory:  
+- `true` → `@73`  
+- `false` → `@75`  
+- `null` → `@71`  
+- `undefined` → `@67`  
+- Empty string `""` → `@77`  
+
+For example:  
+```js
+const myNull = null;
+const myEmptyString = "";
+const myEmptyString2 = "";
+```
+Since `myEmptyString` and `myEmptyString2` store the same empty string, they **share the same address** (`@77`).  
+
+📌 **Rule of Thumb:**  
+If a value **does not change** (like `true`, `false`, `null`, `""`), JavaScript **reuses the same memory address** instead of creating a new one.  
+
+---
+
+### 🔥 Why is This Important?  
+✅ For **primitive types**, memory addresses are not crucial because JavaScript **compares values, not addresses**.  
+✅ For **non-primitive types** (like objects, arrays, and functions), memory addresses **matter a lot** because JavaScript **compares addresses, not values**.  
+
+Understanding memory addresses helps avoid **unexpected behavior** when comparing objects, optimizing performance, and debugging efficiently. 🚀
+<above content in detail form end/>

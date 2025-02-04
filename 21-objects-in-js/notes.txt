@@ -1,0 +1,356 @@
+JS has 7 primitive types and 1 non-primitive type that is object.
+actually these three types:-
+ <li>Object Literals</li>
+      <li>Arrays</li>
+      <li>Functions</li>
+      are also type of object.
+{} this is called block.
+this is called empty object. const user={}.
+if console this empty object then we will get empty object in
+ console with its prototype.
+
+ q:what is prototype?
+``` Ans:-In JavaScript, every object has a prototype. A prototype is also an object. All JavaScript objects inherit their properties and methods from their prototype.
+
+The Object.prototype is the top-level prototype from which all objects inherit properties and methods. You can access an object's prototype using Object.getPrototypeOf(obj) or the __proto__ property.
+
+Here's an example:-
+const user = {};
+console.log(Object.getPrototypeOf(user)); // Outputs: {}
+console.log(user.__proto__ === Object.prototype); // Outputs: true
+
+You can also create objects with a specific prototype using Object.create(proto):
+
+const proto = {greet: function() { console.log("Hello!"); }};
+const user = Object.create(proto);
+user.greet(); // Outputs: Hello!
+
+In this example, user inherits the greet method from proto.```
+
+
+
+In case of variable, if two variable values are equal,then their
+value assign same memory address.
+but in case of object, if even two object have same key value pairs,even then they have diffrent memory
+ address.
+ like:-
+
+ const user={firstName:"akash",lastName:"khan",age:24,isGraduate:false,isAdult:true,hasJob:false};
+const user2={firstName:"akash",lastName:"khan",age:24,isGraduate:false,isAdult:true,hasJob:false};
+user===user2
+ result=>false
+they have same system/context. but in system/content they diffrent memory context.
+like:-
+user::{firstName, lastName, age, isGraduate, isAdult, hasJob}@1635855
+6
+360 %	360 %	
+user2::{firstName, lastName, age, isGraduate, isAdult, hasJob}@1635857
+
+in primitive types variable are compare with their values. that is why they are called value type.
+but in non-primitive like objects variable are compare with their reference.not their value.that is why non-primitive data types are called reference types. 
+In non-primitive type simply address is compared,and give false.this is because object may have too much values i.e 1000 to 100000s, it is too much diffiult to compare whole property and values, and programm may slow down in this case.if address is equal then give true else false.
+
+
+
+const myNAme="Anurag";
+const userName1=""
+const userName2=""
+
+const obj1={}
+const obj2={}
+
+you can see the address of variable in case of string or object.Since string are primitive type so they have same address, and even in case of empty object they have diffrent address. 
+
+obj1::{}@3212689
+6
+280 %	280 %	
+obj2::{}@3212691
+6
+280 %	280 %	
+myNAme::"Anurag"@2209311
+6
+200 %	200 %	
+userName1::""@77
+4
+120 %	120 %	
+userName2::""@77
+
+
+When we use {} notation, every time in our memory, a new object would be create.
+
+note:-It is possible that  same string have different addess, like "akssh and "aka"+ "sh" but when we compare it then in primitive data types have compare values instead of address.
+
+
+note:-"quotes must be necessary in case of - in object keys like 'first-name'."
+
+we can also write expression in object like:-
+const user={firstName:"akash",lastName:"khan",age:24,isGraduate:false,isAdult:true,hasJob:false};
+console.log("expression",user["first"+"Name"]);
+
+
+we can also add property and value in object from outside object like.
+user.age=25;
+console.log(user.age);
+
+
+
+if we create an netsted object like this ```
+const user3={firstName:"akash",
+    lastName:"khan",age:24,
+    isGraduate:false,isAdult:true,
+    hasJob:false,
+    address:{
+        city:'fsd',
+        pinCode:"786",
+        state:'punjab',
+        moreDetails:{
+            population:12345678,
+            area:'786 sq km'
+         }
+    }};```
+then how it store in memory ?
+it store in memory like 
+user3::{firstName, lastName, age, isGraduate, isAdult, hasJob, address} @405647
+
+if we open it then we know that its inner object has its own unique address:-
+address::{city, pinCode, state, moreDetails}@405649
+7
+280 %	4960 %	
+map::system / Map@405651
+7
+400 %	4200 %	
+__proto__::{constructor, __defineGetter__, __defineSetter__, ..., get __proto__, set __proto__, toLocaleString}@405631
+3
+720 %	2680 %	
+hasJob::system / Oddball@75
+2
+280 %	280 %	
+isAdult::system / Oddball@73
+2
+280 %	280 %	
+isGraduate::system / Oddball@75
+2
+280 %	280 %	
+firstName::"akash"@8667
+7
+200 %	200 %	
+lastName::"khan"@80035
+7
+160 %	160 %	
+age::smi number@176153
+
+
+then we realize that parent object has its own address:- @405647 and its child address has unique address:-@405649.and its child moreDetails has its own unique address :-@824925.
+
+
+
+it is important to remember that in boject  all string values of key are denoted by adreess in front of key insted of values directly.:-
+
+const user3={firstName:@8667,
+    lastName:@80035,age:smi number@176153,
+    isGraduate:Oddball@75,isAdult:system / Oddball@73,
+    hasJob:system / Oddball@75,
+    address:{
+        city:@129067,
+        pinCode:@18749,
+        state:@95689,
+        moreDetails:{
+            population:smi number@825479,
+            area:@18921
+         }
+    }
+    }
+
+
+
+so we have created three objects in memory, for reating user3. it we search any object like :-@824925. then we see this object in object section.like string section.
+
+
+
+<organize content start>
+Here's a more readable and easy-to-understand version of your content:  
+
+---
+
+# 🟢 **Understanding Primitive and Non-Primitive Data Types in JavaScript**  
+
+JavaScript has **7 primitive types** and **1 non-primitive type**:  
+
+### ✅ **Primitive Types** (Stored by Value)  
+1. **Number**  
+2. **String**  
+3. **Boolean**  
+4. **Undefined**  
+5. **Null**  
+6. **BigInt**  
+7. **Symbol**  
+
+### ✅ **Non-Primitive Type** (Stored by Reference)  
+- **Object** (including objects, arrays, and functions)  
+
+---
+
+## 🔹 **Objects in JavaScript**  
+
+Objects are key-value pairs stored in memory. In JavaScript, the following types are all considered **objects**:  
+- **Object Literals `{}`**  
+- **Arrays `[]`**  
+- **Functions `function() {}`**  
+
+### 🟢 **Empty Object Example**  
+```js
+const user = {}; 
+console.log(user); // Outputs: {}
+```
+An empty object `{}` has an internal **prototype**, which contains inherited methods and properties.
+
+---
+
+## 🔹 **What is a Prototype?**  
+A **prototype** is an object that acts as a blueprint for other objects. Every object in JavaScript **inherits** properties and methods from its prototype.
+
+### 🟢 **Example: Checking Prototype**  
+```js
+const user = {};
+console.log(Object.getPrototypeOf(user));  // Outputs: {}
+console.log(user.__proto__ === Object.prototype); // true
+```
+### 🟢 **Creating an Object with a Prototype**  
+```js
+const proto = { greet: () => console.log("Hello!") };
+const user = Object.create(proto);
+
+user.greet(); // Outputs: Hello!
+```
+Here, `user` inherits the `greet` method from `proto`.
+
+---
+
+## 🔹 **Comparing Primitive vs. Non-Primitive Values**  
+
+- **Primitive values are compared by their actual value.**  
+- **Objects (non-primitives) are compared by reference (memory address).**  
+
+### 🟢 **Example: Primitive Values (Compare by Value)**  
+```js
+const name1 = "Akash";
+const name2 = "Akash";
+
+console.log(name1 === name2); // true ✅ (same value)
+```
+Even though `name1` and `name2` have the same memory address, JavaScript compares their **values**.
+
+---
+
+### 🔴 **Example: Objects (Compare by Reference)**  
+```js
+const user1 = { firstName: "Akash", age: 24 };
+const user2 = { firstName: "Akash", age: 24 };
+
+console.log(user1 === user2); // false ❌ (different memory addresses)
+```
+Even though `user1` and `user2` have the **same key-value pairs**, JavaScript assigns them **different memory addresses**.  
+
+#### 📌 **Memory Addresses Example:**  
+```
+user1: { firstName, age } @1635855  
+user2: { firstName, age } @1635857  
+```
+Since memory addresses are different, `user1 === user2` returns `false`.  
+
+---
+
+## 🔹 **How Objects and Strings are Stored in Memory**  
+
+### ✅ **Primitive Values (Strings, Numbers)**
+- Strings with the **same value** share the **same memory address**.
+- Example:
+  ```js
+  const name1 = "Anurag";
+  const name2 = "Anurag";
+  ```
+  ```
+  name1::"Anurag"@2209311  
+  name2::"Anurag"@2209311  
+  ```
+  Both `name1` and `name2` share the same memory location.
+
+### ❌ **Non-Primitive Values (Objects)**
+- Empty objects `{}` always get **new memory addresses**.
+  ```js
+  const obj1 = {};
+  const obj2 = {};
+  ```
+  ```
+  obj1::{}@3212689  
+  obj2::{}@3212691  
+  ```
+  Even though both are empty, they **do not share the same memory address**.
+
+---
+
+## 🔹 **Nested Objects and Memory Storage**  
+Objects can contain other objects inside them. Each nested object gets **a separate memory address**.
+
+### 🟢 **Example: Nested Object**  
+```js
+const user3 = {
+  firstName: "Akash",
+  lastName: "Khan",
+  age: 24,
+  isGraduate: false,
+  address: {
+    city: "Faisalabad",
+    pinCode: "786",
+    state: "Punjab",
+    moreDetails: {
+      population: 12345678,
+      area: "786 sq km"
+    }
+  }
+};
+```
+### 📌 **How It’s Stored in Memory:**  
+```
+user3:: { firstName, lastName, age, isGraduate, address } @405647  
+address:: { city, pinCode, state, moreDetails } @405649  
+moreDetails:: { population, area } @824925  
+```
+Each nested object has its **own memory address**, separate from the parent object.
+
+---
+
+## 🔹 **How JavaScript Handles Object Properties**  
+- **All string values of keys are stored by their memory address, not directly by value.**  
+- Example:
+  ```js
+  const user = {
+    firstName: "Akash",
+    lastName: "Khan"
+  };
+  ```
+  In memory:
+  ```
+  firstName:: "Akash" @8667  
+  lastName:: "Khan" @80035  
+  ```
+
+### ✅ **Adding Properties Dynamically**  
+```js
+user.age = 25;
+console.log(user.age); // Outputs: 25
+```
+We can **add properties to an object at runtime**.
+
+---
+
+## 🔹 **Key Takeaways**  
+✅ **Primitive types (strings, numbers, booleans) are compared by value.**  
+✅ **Objects (arrays, functions) are compared by reference (memory address).**  
+✅ **Empty objects `{}` always get new memory addresses.**  
+✅ **Strings with the same value share the same memory address (except when concatenated dynamically).**  
+✅ **Nested objects inside an object have their own unique memory addresses.**  
+
+Understanding memory management in JavaScript helps in **debugging, optimizing performance, and avoiding unexpected behavior** in comparisons. 🚀
+</organize content end>
+

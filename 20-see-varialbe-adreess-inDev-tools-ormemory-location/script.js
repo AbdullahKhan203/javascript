@@ -1,0 +1,12 @@
+const firstName="Akash";
+const secondName="Akash";
+const firstName2="Aka"+"sh";
+const lastName="Kumar";
+const userAge=24;
+const isGraguate=false;
+const isAdult=true;
+const hasJob=false;
+const myNull=null;
+const myUndefined=undefined;
+const myEmptyString="";
+const myEmptyString2="";
