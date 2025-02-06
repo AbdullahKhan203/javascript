@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-main{
+  border: 2px solid red;
+  /* width: 40%; */
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+
+.topbar{
+  display: flex;
+  gap: 4px;
+
+}
+
+
+table{
+  border: 2px solid black;
+  width: 40%;
+}

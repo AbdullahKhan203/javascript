@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>todo-app</title>
+</head>
+<body>
+    <div class="container">
+       <h1>Organize you life Here!</h1> 
+
+    
+<div class="todo-main">
+    <div class="topbar">
+        <input type="text" id="title" placeholder="task title">
+        <input type="text" id="description" placeholder="task description">
+        <input type="date" name="" id="date" title="due date" placeholder="due date" placeholder="due date">
+        <button onclick="AddTask()">Add Task</button>
+    </div>
+   
+    <!-- <button>Delete Task</button>
+    <button>Update Task</button> -->
+</div>
+<h2>Your tasks are......</h2>
+<div class="display-tasks">
+    <table border="2">
+        <thead>
+        <tr>
+            <th>title</th>
+            <th>description</th>
+            <th>due date</th>
+            <th>Is complete</th>
+            <th>Update</th>
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody class="signle-task">
+        
+    </tbody>
+
+      <div>
+        
+
+      </div>
+    
+       
+        
+    </table>
+</div> 
+<script src="./script.js"></script>
+</div>
+</body>
+</html>
