@@ -29,3 +29,143 @@ widnow.resizeTo() for resizing window but only those that is created by window.o
 
 
 remember DOM and BOM are part of web api not core javascript.web api means we interact with browser or website with the help of javascript that way provide by browser called web api.
+
+
+
+
+
+
+
+<above content in easy form start>
+### **📌 Browser Object Model (BOM) – Simple Notes for Frontend Developers**  
+
+#### **🔹 What is BOM?**  
+- **BOM (Browser Object Model)** is a built-in **JavaScript model** provided by browsers.  
+- It allows **interaction with the browser** (not the webpage content).  
+- BOM is **different from DOM** (which deals with HTML elements).  
+
+#### **🛠️ `window` Object – The Global Object**  
+- `window` is the **main object** of BOM.  
+- All BOM properties and methods belong to `window`.  
+- You can access them directly (e.g., `location.href` instead of `window.location.href`).  
+
+---
+
+### **📌 Key BOM Features & Usage**  
+
+### **🔹 `window.location` – Working with URLs**  
+The `location` object helps interact with the URL.  
+
+```js
+console.log(location.href); // Get the current page URL
+console.log(location.hostname); // Get the domain name
+console.log(location.pathname); // Get the path after domain
+console.log(location.protocol); // Get protocol (http / https)
+console.log(location.port); // Get port number (if available)
+console.log(location.origin); // Get full domain (protocol + hostname)
+console.log(location.hash); // Get hash part of the URL (if any)
+```
+
+✅ **Reload Page:**  
+```js
+location.reload(); // Refresh the current page
+```
+
+✅ **Redirect to a New Page (Same Domain):**  
+```js
+location.href = "about.html"; // Opens 'about.html' in the same domain
+```
+
+✅ **Redirect to a New Website (Different Domain):**  
+```js
+location.href = "https://www.google.com"; // Opens Google
+```
+
+---
+
+### **🔹 `window.history` – Browser History**  
+The `history` object helps navigate back and forth in the browser history.
+
+```js
+console.log(history.length); // Get the number of visited pages in session
+
+history.back();   // Go to the previous page
+history.forward(); // Go to the next page
+history.go(-2);   // Jump 2 pages back
+history.go(3);    // Jump 3 pages forward
+```
+
+⚠️ If there are no more pages forward or backward, it returns `undefined`.  
+
+---
+
+### **🔹 `window.open()` & `window.close()` – Controlling Browser Tabs**  
+
+✅ **Open a New Tab:**  
+```js
+window.open("https://www.google.com"); // Opens Google in a new tab
+```
+
+✅ **Open a Tab with a Custom Name (Avoid Using Reserved Words):**  
+```js
+window.open("https://www.google.com", "myTab");
+```
+
+✅ **Close a Tab (Only if Opened via `window.open()`):**  
+```js
+const newTab = window.open("https://www.google.com");
+newTab.close(); // Closes the new tab
+```
+
+✅ **Resize a Window (Only for Resizable Windows):**  
+```js
+window.resizeTo(800, 600); // Resizes the window to 800x600
+```
+
+---
+
+### **🔹 `window.innerWidth` & `window.innerHeight` – Getting Window Size**  
+✅ **Get the Current Window Size:**  
+```js
+console.log(window.innerWidth);  // Inner width of the browser
+console.log(window.innerHeight); // Inner height of the browser
+```
+⚠️ Works best at **100% zoom level**.  
+
+✅ **Get the Entire Window Size (Including Browser UI):**  
+```js
+console.log(window.outerWidth);  // Full width including browser frame
+console.log(window.outerHeight); // Full height including browser frame
+```
+
+---
+
+### **📌 Important Notes for Frontend Developers**  
+1️⃣ **BOM ≠ DOM**  
+   - **BOM** helps interact with the browser (URLs, history, window size, etc.).  
+   - **DOM** helps interact with the webpage content (HTML elements).  
+
+2️⃣ **BOM is a Part of Web APIs**  
+   - BOM methods are **provided by the browser**, not JavaScript itself.  
+   - Web APIs allow JavaScript to interact with the browser environment.  
+
+3️⃣ **LocalStorage & SessionStorage Are Also BOM Parts**  
+   - These allow storing data in the browser (useful for saving user preferences).  
+
+4️⃣ **Avoid Frequent Use of `location.reload()`**  
+   - It refreshes the page and **loses all unsaved user input**.  
+
+5️⃣ **Security Restrictions on `window.open()`**  
+   - You **cannot close a tab** unless it was opened by your script.  
+   - Some browsers **block `window.open()`** in pop-up blockers.  
+
+---
+
+### **🚀 Final Tips**
+✅ Use `location.href` carefully when redirecting to **external** sites.  
+✅ Avoid excessive use of `history.back()` as users might find it annoying.  
+✅ `window.open()` is useful for opening **external links without affecting user navigation**.  
+✅ Use `window.innerWidth` and `window.innerHeight` to create **responsive UI designs**.  
+
+This should give you a solid understanding of **BOM** and its usage in frontend development! 🚀
+<above content in easy form end/>

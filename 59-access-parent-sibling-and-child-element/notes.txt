@@ -1,0 +1,18 @@
+we can get access  eny parent of element by "element.parentElement" and also get parent of this by
+"element.parentElement.parentElement".
+if we does furthur paranetElement.parentElement then we react at final element which is "HTML".
+After HTML we will get "null".For futhur find parent of element we should check ".parentNode" then we will
+get "document".It means that our html is in document object.
+document is a parent node.
+if we does .childNodes then i give NodeList[] which contain child nodes e.g texts and elements etc .if we does .children then i gives HTML collection[], which give inner  html elements.length of nodes html parennt elements  may equal or more that childElements.
+Note: Every element is a node, but not every node is an element. Other nodes include text nodes and comment nodes.
+If an elements has four child elements, its each child element has siblings. for eample has 4 sibings like paragraph has 4 siblings 1)b 2)a 3)a 4)a 5)a then i we are on first sibling then we have obtion of next sibling .nextSibling and 2,3,4, we has both .nextSibling and .previousElementSibling.and 5 has only 
+.previousElementSibling.if not find sibling then i give null.
+note:- if we get childElements then it gives only elements,if we childNodes then it give all elements and text,also comment  in NodeList.
+
+.nextElementSibling give us only element sibling and .nextSibling give us whole element,comments,texts every thing.
+
+
+
+
+

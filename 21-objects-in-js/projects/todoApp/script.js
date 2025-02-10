@@ -65,22 +65,22 @@ function displayTasks(){
 
 
   console.log("tasks",tasks);
-//   const taskShowDiv=document.querySelector(".single-task")
-//   console.log("taskShowDiv",taskShowDiv);
 
 tasks.map((task,i)=>{
-//   console.log(task)
 let tableRow=`
 <tr key={i}>
             <td>${task.title}</td>
             <td>${task.description}</td>
             <td>${task.dueDate}</td>
             <td><div style="display: flex;justify-content: center;align-items: center;"><input type="checkbox" name="" id=""></div></td>
-            <td><button  onclick="updateTask(${task.id})">Update Task</button></td>
-            <td><button onclick="deleteTask(${task.id})">Delete Task</button></td>
+            <button onclick="anotherUpdateButton(${task.id}, event)">Update Task</button>
+         <td><button onclick="deleteTask(${task.id})">Delete Task</button></td>
             
         </tr>
         `;
+
+        // <td><button  id="update-btn"  onclick="anotherUpdateButton(${task.id})">Update Task</button></td>
+            
         
         
         document.querySelector(".signle-task").innerHTML+=tableRow
@@ -91,28 +91,76 @@ let tableRow=`
 }
 displayTasks()
 
+// function updateTask(id){
+//   let storeTasks=JSON.parse(localStorage.getItem("addTask"))
+//   console.log("storeTasks",storeTasks)
+//   let index=storeTasks.findIndex(task=>task.id==id)
+//   console.log("findTask",index)
+  
+  
+//   let task=storeTasks[index]
+//   console.log("task",task)
+  
+//   document.getElementById("title").value=task.title;
+//   document.getElementById("description").value=task.description;
+//   document.getElementById("date").value=task.dueDate;
 
 
+  
+//   document.querySelector("#update-btn").innerHTML="cancel";
+// }
+// new
+function updateTask(id, btn) {
+  let storeTasks = JSON.parse(localStorage.getItem("addTask"));
+  let index = storeTasks.findIndex(task => task.id == id);
+  let task = storeTasks[index];
 
+  document.getElementById("title").value = task.title;
+  document.getElementById("description").value = task.description;
+  document.getElementById("date").value = task.dueDate;
 
-
-
-
-function updateTask(id){
-  let storeTasks=JSON.parse(localStorage.getItem("addTask"))
-  console.log("storeTasks",storeTasks)
- let index=storeTasks.findIndex(task=>task.id==id)
-  console.log("findTask",index)
-
-
-  let task=storeTasks[index]
-  console.log("task",task)
-
-  document.getElementById("title").value=task.title;
-  document.getElementById("description").value=task.description;
-  document.getElementById("date").value=task.dueDate;
-
+  btn.innerText = "Cancel"; // Change only this button
 }
+
+
+
+
+
+// function cancelUpdateTask(){
+//       document.getElementById("title").value="";
+//   document.getElementById("description").value="";
+//   document.getElementById("date").value="";
+//   document.querySelector("#update-btn").innerHTML="Update Task";
+// }
+// new
+function cancelUpdateTask(btn) {
+  document.getElementById("title").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("date").value = "";
+
+  btn.innerText = "Update Task"; // Reset only this button
+}
+
+
+// function anotherUpdateButton(id){
+//   let btn=document.querySelector("#update-btn")
+//   if(btn.innerText=="Update Task"){
+//     updateTask(id)
+//   }else{
+//     cancelUpdateTask()
+//   }
+// }
+// new
+function anotherUpdateButton(id, event) {
+  let btn = event.target; // Get the clicked button
+
+  if (btn.innerText === "Update Task") {
+      updateTask(id, btn);
+  } else {
+      cancelUpdateTask(btn);
+  }
+}
+
 
 
 

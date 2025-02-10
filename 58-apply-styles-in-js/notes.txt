@@ -1,0 +1,313 @@
+How to apply styles in js?
+if we try to get css by  document.querySelectorAll('a').style
+then it give us object 'CSSSTYLEDECLARATION':-which have whole style properties.
+but the style properties Which we had apply in style.css. It give us only the CSS property values which we applied through inline CSS over by JS.
+inline style  has more'selector specificity' than style.css style.Those style is applied which has more selecter specificity.
+
+<question start>
+q:-why it gives the style which we give in inline or by js, and not give the style which we give in style.css file?
+ans:-Great question! The reason **`element.style`** only returns inline styles or styles set via JavaScript and **not** styles from an external CSS file (like `style.css`) is due to how the **style object** works in the DOM.
+
+---
+
+### **Why `element.style` Only Returns Inline Styles?**
+The `.style` property on a DOM element **only reflects the styles that are set directly in the element’s `style` attribute**.
+
+#### ✅ **Example (Inline Style)**
+```html
+<a href="#" style="color: red;">Click me</a>
+```
+```javascript
+console.log(document.querySelector('a').style.color); // "red"
+```
+✅ **Works!** Because `color: red;` is an **inline style**.
+
+---
+
+### **Why `.style` Does NOT Show External CSS Styles?**
+When you define styles in an **external CSS file** (`style.css`) or inside a `<style>` tag, they are applied via the **CSSOM (CSS Object Model)**, not via the `style` attribute.
+
+#### ❌ **Example (External CSS)**
+```html
+<head>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    a { color: blue; }
+  </style>
+</head>
+<body>
+  <a href="#">Click me</a>
+</body>
+```
+
+✅ **CSS File (`style.css`):**
+```css
+a {
+  color: green;
+}
+```
+
+✅ **JavaScript Check:**
+```javascript
+console.log(document.querySelector('a').style.color);
+```
+
+🔹 **Output:** `""` (empty string)
+
+💡 **Why?**
+- The `.style` property only shows **inline styles**.
+- Since `color: green;` is applied via **external CSS**, it's not stored in the `style` attribute.
+- **The `.style` object does not include computed styles.**
+
+---
+
+### **How to Get Styles from CSS Files?**
+If you want to get the **actual computed style** (including CSS files and `<style>` tags), use:
+
+```javascript
+window.getComputedStyle(document.querySelector('a')).color;
+```
+
+🔹 **Example Output:**
+```javascript
+"rgb(0, 128, 0)" // If CSS sets `color: green;`
+```
+
+---
+
+### **Summary**
+| Method | Returns |
+|--------|---------|
+| `element.style.property` | ✅ Only **inline styles** or styles set via JavaScript |
+| `getComputedStyle(element).property` | ✅ **Final computed style** (from CSS file, `<style>` tag, or inline styles) |
+
+Would you like more examples on manipulating styles dynamically? 🚀.
+
+
+note:- it is useless get properties which we give in style.css. because they can't change able.
+<question end/>
+ if we give css like by document.querySelector('a').style.backgroundColor="green". then this will add in stype attribute of element(in inline) in DOM.
+
+ similarly we can get whole elements of app, can apply styling to whole app in form of loop or maually.
+ like:-
+ let anchorTags=document.querySelectorAll('a')
+console.log(anchorTags);
+for(let x of anchorTags){
+      x.style.color="teal"
+    x.style.textDecoration="none"
+    x.style.fontWeight="700"
+    x.style.fontFamily="cursive"
+}
+
+note:- we can get check elements properties with click on element in dev tools, and property tab in sidebar paneel. 
+
+### **Notes on Applying Styles to Elements in JavaScript**  
+
+There are different ways to apply styles to elements using JavaScript, but some are better than others. Here’s a breakdown of the best approaches:  
+
+---
+<Notes on Applying Styles to Elements in JavaScript start>
+### **1. Directly Setting Individual `style` Properties (Not Recommended)**
+```js
+x.style.color = "teal";
+x.style.textDecoration = "none";
+x.style.fontWeight = "700";
+x.style.fontFamily = "cursive";
+```
+✅ **Works** but ❌ **Not efficient** because it applies styles one by one, making code lengthy.  
+
+---
+
+### **2. Using `style.cssText` (Not Recommended)**
+```js
+x.style.cssText = `color: teal; 
+text-decoration: none; 
+font-weight: 700;`;
+```
+✅ **Shorter code**  
+❌ **Overwrites all inline styles**, which may remove existing styles.  
+
+---
+
+### **3. Using `className` (Okay for a Single Class, Not Best for Multiple)**
+```js
+x.className = "green-link wavy-link";
+```
+✅ **Good for setting a class if the element has no existing class.**  
+❌ **Removes previous classes and replaces them with new ones.**  
+
+---
+
+### **4. Using `setAttribute("class", "class-name")` (Not Recommended)**
+```js
+x.setAttribute("class", "green-link");
+```
+✅ **Works but same issue as `className` → it overwrites all existing classes.**  
+❌ **Not useful when adding multiple classes dynamically.**  
+
+---
+
+### **5. Best Approach → Using `classList` (Recommended)**
+```js
+x.classList.add("green-link");
+x.classList.add("wavy-link");
+```
+✅ **Best for adding multiple classes without removing existing ones.**  
+
+---
+
+### **6. Using `classList.toggle()` (For Adding/Removing a Class Dynamically)**
+```js
+x.classList.toggle("wavy-link");
+```
+✅ **If the class is present, it removes it. If not, it adds it.**  
+✅ **Useful for adding/removing effects like dark mode, active links, etc.**  
+
+---
+
+### **Final Best Practices:**  
+✔️ **Use CSS classes (`classList.add()`) instead of inline styles for better performance and organization.**  
+✔️ **Use `toggle()` for features that need dynamic on/off behavior.**  
+❌ **Avoid `style.cssText` and `setAttribute("class", "name")` since they overwrite existing styles.**  
+
+🔹 **Remember:** Always prefer writing styles in a CSS file and applying them using `classList` for maintainable and scalable code. 🚀
+alos remember:-
+### **Important Notes on Applying Styles Dynamically in JavaScript**  
+
+As a frontend developer, you should understand the best ways to apply and manage styles efficiently in JavaScript. Here’s a detailed breakdown of different methods and best practices for long-term use:  
+
+---
+
+## **1. Directly Setting Individual `style` Properties (Not Recommended for Multiple Styles)**  
+```js
+x.style.color = "teal";
+x.style.textDecoration = "none";
+x.style.fontWeight = "700";
+x.style.fontFamily = "cursive";
+```
+✅ **Good for quick testing or applying a single style dynamically.**  
+❌ **Not efficient for multiple styles, as it modifies properties one by one.**  
+❌ **Hard to maintain if styles need frequent changes.**  
+
+---
+
+## **2. Using `style.cssText` (Not Recommended)**
+```js
+x.style.cssText = `color: teal; 
+text-decoration: none; 
+font-weight: 700;`;
+```
+✅ **Shorter than individual `style` properties.**  
+❌ **Overwrites all inline styles on the element, removing existing ones.**  
+❌ **Less readable and maintainable than using CSS classes.**  
+
+---
+
+## **3. Using `className` (Okay for a Single Class, Not Best for Multiple)**
+```js
+x.className = "green-link wavy-link";
+```
+✅ **Works well when an element has no existing class.**  
+❌ **Replaces all previous classes, which can remove important styles.**  
+❌ **Not flexible for adding/removing specific styles dynamically.**  
+
+---
+
+## **4. Using `setAttribute("class", "class-name")` (Not Recommended)**
+```js
+x.setAttribute("class", "green-link");
+```
+✅ **Works but behaves like `className`—overwrites all existing classes.**  
+❌ **Not practical when adding multiple classes dynamically.**  
+
+---
+
+## **5. Best Practice → Using `classList.add()` (Recommended)**
+```js
+x.classList.add("green-link");
+x.classList.add("wavy-link");
+```
+✅ **Best for adding multiple classes without removing existing ones.**  
+✅ **Keeps the original classes intact while adding new ones.**  
+✅ **More readable and maintainable than inline styles.**  
+
+---
+
+## **6. Using `classList.remove()` (For Removing a Specific Class)**
+```js
+x.classList.remove("wavy-link");
+```
+✅ **Removes only the specified class while keeping others.**  
+✅ **Useful when dynamically toggling between styles.**  
+
+---
+
+## **7. Using `classList.toggle()` (Best for Toggling Styles Dynamically)**
+```js
+x.classList.toggle("wavy-link");
+```
+✅ **If the class is present, it removes it. If not, it adds it.**  
+✅ **Perfect for interactive features like dark mode, dropdowns, etc.**  
+
+---
+
+## **8. Checking if an Element Has a Class (`classList.contains()`)**
+```js
+if (x.classList.contains("green-link")) {
+  console.log("Element already has green-link class.");
+}
+```
+✅ **Useful when checking the presence of a class before adding/removing.**  
+
+---
+
+## **9. Using CSS for Better Performance Instead of Inline Styles**
+✔️ **Write styles in a CSS file instead of JavaScript whenever possible.**  
+✔️ **Use `classList` to dynamically apply CSS instead of modifying `style`.**  
+✔️ **Avoid inline styles in JavaScript unless necessary.**  
+
+✅ **Good CSS Approach (styles.css)**  
+```css
+.green-link {
+  color: teal;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: cursive;
+}
+
+.wavy-link {
+  text-decoration: wavy underline;
+}
+```
+```js
+x.classList.add("green-link"); // Apply styles efficiently
+```
+
+---
+
+## **10. Bonus: Best Practices for Frontend Developers**
+- ✅ **Use `classList.add()` instead of `style.cssText` for maintainability.**  
+- ✅ **Use `toggle()` for switching effects (e.g., dark mode, dropdowns).**  
+- ✅ **Minimize direct `style` modifications in JavaScript.**  
+- ✅ **Keep styling logic separate from JavaScript logic (use CSS classes).**  
+- ✅ **Use `contains()` before `remove()` if needed to prevent errors.**  
+- ❌ **Avoid modifying `className` and `setAttribute("class", "name")` directly.**  
+- ❌ **Don't rely on `style.cssText` as it replaces all inline styles.**  
+
+---
+
+### **Conclusion: The Best Approach**
+🔥 **Use `classList.add()`, `classList.remove()`, and `classList.toggle()` for best performance and maintainability.**  
+🔥 **Write styles in CSS and apply them dynamically via classes instead of inline styles.**  
+
+Would you like additional real-world examples or explanations? 🚀
+
+note:- the styles we add by this is add in element inline not in syle.css.
+<Notes on Applying Styles to Elements in JavaScript end/>
+
+
+
+
+
+
+
