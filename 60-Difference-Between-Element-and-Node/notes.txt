@@ -1,0 +1,16 @@
+note:- every element is a node,but every node is not an element.
+In this lecture we will learn about node,it is not backend node.it is atually a node which is type object in javascript's dom. 
+
+
+if run conde in developer tools console document.body.children then get html collection ```HTMLCollection(6) [h1, script, div#veepn-breach-alert, style, div#veepn-guard-alert, style, veepn-breach-alert: div#veepn-breach-alert, veepn-guard-alert: div#veepn-guard-alert]
+```which has 6 length and has only element,but if we run this code document.body.childNodes then we will get ```NodeList(11) [text, h1, text, comment, text, script, text, div#veepn-guard-alert, style, div#veepn-breach-alert, style]
+``` which has 11 length.
+if we write in our html file,like any simple text without making it element like simple text "hello world" or with element like "<h1>hello world<h1/>" then both become nodes.Even commens  <!-- hello --> become node of document.node is also an object.every node has nodeName(e.g #comment,H1) and node type (1,2,3,4,5 etc specific for text,element,document-node,document-type-node).we can find all its node properties by clicking on node in developer tools elemnt tab, and in its sidebar's property tab, we can find all of its properties of node even commnet node has some properties.
+node:- node has not too much properties. but element has too much properties.every node type has its unique values.element node has type 1.attribute node has type 2.textnode 3,comment node 8.
+
+
+we can aso get style attribute by:-
+document.body.children[0].attributes.style
+style="color: red;".
+we can't change style of node simple text.but can change its value like document.body.childNodes[2].nodeValue="wordl only".
+if we open parent to parent in prototype(prototype chain), then we will get last prototype which is an object.
