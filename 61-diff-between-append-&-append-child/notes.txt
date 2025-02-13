@@ -1,0 +1,54 @@
+append means add in thing in the end of document.means if document has anthing or content then add after that content like push in array.
+for example original document is:-
+```<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>append & appent child</title>
+</head>
+<body>
+    <h1>append & appent child</h1>
+    <div class="container">
+        <div class="card">
+            1
+        </div>
+    </div>
+</body>
+</html>```
+and if we want to appent h1 in container, thne we would do `container.appendChild(h1)`.
+ and if we want that h1 above container stay in his place and another same as it is like h1 element 
+ should appent in conainer, so in this case we first would make clone of h1 element with h1.cloneNode(true) and store this in container with code `container.appendChild(h1.cloneNode(true))`. so with this code original would stay in his place and another copy of h1 would append in container.if we does not clone first then signle h1 which is above side of container,would shift in in-side container. 
+
+ note:-h1.cloneNode(true) is used to make a new copy of h1 elemen.if we want to copy only h1 elemen without its inner content.then would do `h1.cloneNode()`, in this way we would copy h1 without its inner content(with out adding true).
+
+ In this we can ncrease many number of cards fromm single card in container with this :-         `container.appendChild(card.cloneNode(true))`.if we cloneNode any elemen in console or code.then i store in our memory first even  it is not displaying in browser.
+
+
+note:- appendChild function return the element which is appended by this.but append function does not return element,insted  it give us undefined.we can also pass simple string with append, but appendChild does not perform this work,appendChild need node(means element).
+if we want to add 'text' node with appendChild,so we first must create text node with ```newTextNode=document.createTextNode("text")```
+e.g:-
+```let newTextNode=document.createTextNode("text")
+container.appendChild(newTextNode)
+"text"```
+we can't directly do ```container.appendChild("text")```.but we can do ``````container.append("text")```.
+Another thing is that we can append multiple things with "append".like ```container.append("text",h1)```.
+but appendChild append only single element.if we give two then i will ignore second and append only first.
+
+
+note:-```The Element.append() method inserts a set of Node objects or strings after the last child of the Element. Strings are inserted as equivalent Text nodes.
+
+Differences from Node.appendChild():
+
+Element.append() allows you to also append strings, whereas Node.appendChild() only accepts Node objects.
+Element.append() has no return value, whereas Node.appendChild() returns the appended Node object.
+Element.append() can append several nodes and strings, whereas Node.appendChild() can only append one node.```.
+
+
+when we clone an element, then we clone also its attributes, how prevent it to clone its attributes,we can do it with document.createElement.
+
+
+
+

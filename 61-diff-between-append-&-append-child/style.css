@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container{
+    height: auto;
+    width: 100%;
+    border: 2px solid red;
+    color: green;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    height: 100px;
+    
+    width: 100px;
+    border: 1px solid black;
+}
