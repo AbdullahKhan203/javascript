@@ -1,0 +1,145 @@
+In previous lecture ,we would learn append,appendChild,clone etc.In previous lecture we would learn about how create new element with existing element with clone. 
+But In this lecture we would learn how to create new element in js.then that new-created-element,we can append in our html element.
+But first we display an image in parent element .container. than we clone that image in for loop, and change its url "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png", with every iteration of loop, so that in evry iteration we would display a new image in browser, so in this wa we can create many image with loop by add i `${i}.png` to get different image in evr iteration.but this method is done by previous code(by cloning the image and add new index in cloned image).
+
+After displaying image with existing image element,next we would create image with 
+document.createElement('img'),now we would display images of pokemon by cloning our created element, not by clone of already existing eleement.but previous parent of code we created images by clone of already existing image.which we create in container div by writing code of image `<img  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">`.
+after that we add image number with image by displaying index i of loop,which we keep in p tag.
+
+after that we tell a professional way which is used many codebases.that no create new element, but also add html code  in js file  like ````let html=``;
+for (let i = 1; i < 1000; i++) {
+    let innerContainer=`
+<div class="img-container">
+    <img  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png" alt="">
+    <p>${i}</p>
+   </div>
+`
+html+=innerContainer;
+
+}
+// this process also inclue in professionalWay
+container.innerHTML=html;
+ ```. then display this content with loop, and change its inner content with loop.
+
+
+
+
+
+
+
+
+ <above summary notes in more detail start>
+ Here’s an updated version of your notes, incorporating the **initial static image and cloning approach** at the beginning while keeping the rest of the summary structured and professional.  
+
+---
+
+# **Creating and Appending Elements in JavaScript**  
+
+## **1. Displaying Images Using Cloning**  
+### **Step 1: Adding a Static Image**  
+First, we manually add an image inside the `.container` div in the HTML:  
+```html
+<div class="container">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">
+</div>
+```
+This image serves as the base for cloning.
+
+### **Step 2: Cloning the Image in JavaScript**  
+Instead of creating a new `<img>` element, we clone the existing one using `cloneNode()` and change its `src` dynamically in a loop:  
+```js
+const container = document.querySelector('.container');
+const img = document.querySelector('img'); // Selecting the existing image
+
+for (let i = 2; i <= 100; i++) {
+    const newImage = img.cloneNode(); // Clone the original image
+    newImage.attributes[0].nodeValue = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`; // Change the src dynamically
+    container.appendChild(newImage); // Append the new image to the container
+}
+```
+### **Why Use This Approach?**  
+✔️ **Efficient Reuse:** Instead of creating new elements, we reuse an existing one.  
+✔️ **Less Code:** No need to set attributes manually each time.  
+✔️ **Quick DOM Manipulation:** Only modifying the `src` attribute makes it lightweight.  
+
+---
+
+## **2. Creating and Appending New Elements**  
+Once we've understood cloning, we move to creating elements dynamically with `document.createElement()`.  
+
+### **Step 1: Creating and Appending an Image**  
+```js
+const imgElement = document.createElement('img');
+imgElement.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png";
+imgElement.height = 100;
+container.append(imgElement);
+```
+This creates a new image from scratch and adds it to the container.
+
+### **Step 2: Generating Multiple Images in a Loop**  
+```js
+for (let i = 1; i <= 50; i++) {
+    let newImage = document.createElement('img');
+    newImage.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
+    container.append(newImage);
+}
+```
+Each loop iteration generates and appends a new image.
+
+---
+
+## **3. Structuring Elements with a `div`**  
+To organize the images better, we wrap them inside a `div`:  
+```js
+for (let i = 1; i <= 50; i++) {
+    let imgContainer = document.createElement('div');
+    imgContainer.classList.add('img-container');
+    
+    let newImage = document.createElement('img');
+    newImage.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
+    
+    let para = document.createElement('p');
+    para.innerText = i;
+    
+    imgContainer.append(newImage, para);
+    container.append(imgContainer);
+}
+```
+### **Why Use This Approach?**
+- Each image is inside a `div`, making it easier to style.
+- Images are labeled with their corresponding numbers.
+
+---
+
+## **4. Professional Approach: Using `innerHTML`**  
+For better performance, we generate an HTML string and set it in one operation:  
+```js
+let html = "";
+for (let i = 1; i < 1000; i++) {
+    html += `
+    <div class="img-container">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png" alt="">
+        <p>${i}</p>
+    </div>`;
+}
+container.innerHTML = html;
+```
+### **Why Use This Approach?**
+✔️ **Better Performance:** Single DOM update instead of multiple.  
+✔️ **Cleaner Code:** More readable and structured.  
+✔️ **Easier Maintenance:** Uses a template-based format.
+
+---
+
+## **5. Summary**  
+- **Cloning Existing Elements:** Select an existing element, clone it with `cloneNode()`, modify its attributes, and append it.  
+- **Creating New Elements:** Use `document.createElement()`, modify its properties, and append it.  
+- **Using a `div` Container:** Wrap images in `div` for better styling and structure.  
+- **Optimizing Performance:** Use `innerHTML` for large-scale element generation.  
+
+These techniques help in building dynamic UI elements efficiently. 🚀  
+
+---
+
+This updated version includes **all your key points**, keeping it **organized, professional, and easy to understand** for future reference. Let me know if you need further refinements! 😊
+ <above summary notes in more detail end />

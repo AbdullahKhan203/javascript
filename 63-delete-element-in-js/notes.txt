@@ -1,0 +1,186 @@
+In this lecture we will leanrn how to remove element form document.In previous lecture we learned that we can vanish things with display:none but problem is with display:none, element hide from displaying us
+according to javascript that hide element existists.
+
+
+
+in this video, we will see how to remove elements from our page. Till now, we have learned how to add, append, create elements. If we want to remove an element from our page, then we will see how to remove it in this video. Although, we have seen that by display:none, we can remove things from our page. By displaying, we can remove things from our page, but not from the eyes of JavaScript.
+If we select by using JavaScript, then that object will remain there.
+
+So, in this video, we will see how we can completely delete or remove an element by using JavaScript. And then it will not be there. Even if we select by using JavaScript, it will not be there.It will not remain on our page.Even if you select by using javascript,element will not be there, element will not remian our page.even we can't find that element with css.
+ We can delete them manually by right-click-on-element>delete in element's tab in devloper tools.but it is not permenently.when we delete an element,next element will automatically select.
+ Best way is to delete with js code.
+ Q:-How to delete element with js?
+ Ans:- For delete first we get the addess of element by 'copy js path'.from copy js path we get the element and store in variable or not, it is our will, like:-
+```const imageelement=document.querySelector("body > div.container > div:nth-child(3)")```
+we remove this element form document with js method .remove().
+e.g:- imageelement.remove().
+
+Another method is removeChild().
+But we mush call this method on childs parent.not child.
+imageelement.parentElement.removeChild(imageelement)
+
+
+after imageelement from document, if we check 'imageelement' in console, we realize that 'imageelement' is store in our memory,and also have address of element(document.querySelector("body > div.container > div:nth-child(3)")).
+and we can append again this code in our document.
+best practice is that is you have aim to remove an element, so no store that element in variable.Because if you store element in variable, then variabel staying in memory even after delete that particular element.so not store the element in variable if you want to remove the element because it may be possib le that the variable has huge size and create performance issue.
+if it is necessary to store element in variabel, then assign variable with let.
+with null variabel will not remove form memory, but you can assign variabel=null after delete eleemnt. so that variabel store in memory could remove, and our memory free from that variable.in this way the varialbe that points the location,become finished.So we must clear that variable after remove.
+note:- variabel will not clear automatically, we must clear that variable after remove, so varialbe Could not create performance issue.if variabel has very huge size, then we can even check difference
+in developer tool's option 'memory'.
+
+
+
+
+
+
+<detailed notes start>
+Here's the updated **detailed notes** with an additional section explaining how to **measure memory difference before and after deletion** using **Developer Tools (Chrome DevTools > Memory Tab)**.  
+
+---
+
+# **📌 JavaScript: Removing Elements from the DOM**  
+
+## **1️⃣ Introduction**  
+In JavaScript, we can remove elements from the **DOM (Document Object Model)** dynamically using different methods. While `display: none;` can visually hide elements, it does **not remove them from the DOM**—they still exist and take up memory.  
+
+🔹 In this guide, we will explore different ways to **completely remove elements from the page** using JavaScript.  
+
+---
+
+## **2️⃣ Why Not Use `display: none;`?**  
+Many developers use `display: none;` to hide elements, but the problem is:  
+✔️ The element is still present in the DOM.  
+✔️ It still occupies memory.  
+✔️ JavaScript can still select and modify it.  
+✔️ CSS and JavaScript can bring it back at any time.  
+
+Thus, **hiding is not the same as deleting**.  
+
+---
+
+## **3️⃣ Methods to Delete an Element in JavaScript**  
+
+### **🔹 Method 1: `.remove()` (Recommended)**
+- This is the simplest way to delete an element.  
+- Once removed, the element is **completely gone** from the DOM.  
+- The variable that referenced it still exists unless set to `null`.  
+
+### **📌 Example:**
+```javascript
+// Select the element to delete
+const imageElement = document.querySelector(".container div:nth-child(3)");
+
+// Remove the element from the DOM
+imageElement.remove();
+```
+✅ The element is **completely removed**, and JavaScript **cannot** interact with it anymore.  
+
+---
+
+### **🔹 Method 2: `.removeChild()` (Used with Parent Elements)**
+- Instead of directly removing an element, we use its **parent** to remove it.  
+- The `.removeChild()` method must be called on the parent **explicitly**.  
+
+### **📌 Example:**
+```javascript
+// Select the element to delete
+const imageElement = document.querySelector(".container div:nth-child(3)");
+
+// Use parent to remove the child
+imageElement.parentElement.removeChild(imageElement);
+```
+✔️ The element is removed, but **the variable still exists in memory** unless explicitly cleared.  
+
+---
+
+## **4️⃣ Important Notes About Deleting Elements**
+### **✔️ What Happens to the Variable After Deletion?**
+Even after removing an element from the DOM, **the variable that stored its reference still exists** in memory.  
+
+🔸 If you check in the console:  
+```javascript
+console.log(imageElement);
+```
+You will see that `imageElement` still **holds the reference**, even though it’s no longer in the DOM.
+
+### **✔️ How to Free Up Memory After Deletion?**
+If an element is **large in size** (e.g., an image or a dynamically created component), keeping its reference **unnecessarily consumes memory**. To prevent this:  
+```javascript
+imageElement = null;  // Free up memory
+```
+✅ This clears the variable, making sure the element **no longer exists in memory**.  
+
+---
+
+## **5️⃣ Best Practices for Removing Elements**
+🔹 **Do NOT store an element in a variable** unless necessary.  
+🔹 **If you store it in a variable, clear it (`element = null`) after deletion.**  
+🔹 **Use `.remove()` for quick deletion and `.removeChild()` if working with parents.**  
+🔹 **Check memory usage in the Developer Tools (Chrome DevTools > Memory Tab).**  
+
+---
+
+## **6️⃣ Alternative Approach: Manual Deletion**
+We can also manually delete an element in **Developer Tools**:  
+1️⃣ Right-click on the element in **Elements Tab**.  
+2️⃣ Click **Delete Element**.  
+✔️ This removes it from view but **not permanently** (refreshing the page restores it).  
+
+For **permanent removal**, JavaScript methods are required.  
+
+---
+
+## **7️⃣ Measuring Memory Usage Before and After Deletion**  
+When working with large elements (such as **images, lists, or dynamically generated DOM elements**), it’s useful to check the **memory difference before and after deletion**.  
+
+### **📌 Steps to Measure Memory in Chrome DevTools:**
+1️⃣ **Open Chrome Developer Tools**  
+   - Right-click anywhere on the page and select **Inspect**.  
+   - Or press **F12** or `Ctrl + Shift + I` (`Cmd + Option + I` on Mac).  
+
+2️⃣ **Go to the "Memory" Tab**  
+   - Click on the **Memory** tab in DevTools.  
+   - Select **Heap Snapshot** to analyze memory usage.  
+
+3️⃣ **Take a Memory Snapshot Before Deletion**  
+   - Click **Take Snapshot**.  
+   - Look at the total memory usage.  
+
+4️⃣ **Run JavaScript Code to Remove the Element**  
+   ```javascript
+   const imageElement = document.querySelector(".container div:nth-child(3)");
+   imageElement.remove();
+   imageElement = null;  // Free memory
+   ```
+   - This removes the element **and clears the reference**.  
+
+5️⃣ **Take Another Memory Snapshot**  
+   - Click **Take Snapshot** again.  
+   - Compare it with the previous snapshot.  
+
+### **📌 Expected Results**
+✔️ **Before deletion**, memory usage is higher because the element still exists.  
+✔️ **After deletion**, memory usage should **decrease**, indicating that the element is no longer taking up space.  
+
+---
+
+## **8️⃣ Summary**
+| Method | Removes from DOM? | Parent Required? | Clears Memory? |
+|--------|----------------|-----------------|----------------|
+| `.remove()` | ✅ Yes | ❌ No | ❌ No (unless `element = null`) |
+| `.removeChild()` | ✅ Yes | ✅ Yes | ❌ No (unless `element = null`) |
+| `display: none;` | ❌ No | ❌ No | ❌ No |
+
+**✅ `.remove()` is the best method** because it's **simple, efficient, and requires no parent selection**.  
+
+---
+
+# **💡 Final Thoughts**
+JavaScript provides different ways to delete elements, but **just hiding them is not the same as removing them**. When removing elements:  
+✔️ Always check memory usage.  
+✔️ If working with large elements, **clear variables** after deletion.  
+✔️ Prefer `.remove()` for quick deletion and `.removeChild()` for parent-child relationships.  
+✔️ Use **Chrome DevTools > Memory Tab** to measure memory changes before and after deletion.  
+
+Would you like **examples with animations** (e.g., fade out before removal)? 🚀
+<detailed notes end/>
