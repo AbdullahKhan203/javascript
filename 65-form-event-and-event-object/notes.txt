@@ -1,0 +1,103 @@
+In this notes,we will what is form event and event object?
+like we have a form that has input and submit button.when we submit than different types ofevents are fired.when we click on input or type that diffrent types of events are fired.
+When any event is fired, then we get an event object. We will discuss about that in detail in this video.
+till know we have discused about click and doubleclick events.
+but tere many types of events that we can apply on form.
+like click events:-
+// userNameInput.addEventListener('click',()=>{
+//     console.log("single clicked");
+    
+// })
+// userNameInput.addEventListener('dblclick',()=>{
+//     console.log('double click')
+// })
+click event some apply on button,sorm submt,hamberger manu etc. not input fied.
+Events that can apply on input are input,change,blur,focus etc.
+input event is fired when we tpye any thing in input. 
+input event is fired when we try  to change any thing in existing input field.
+for getting input value, we must pass an event parameeter in function, function is called by addEventListener,and during calling pass something caled 'even',which we can accept with writing something in parameter of function like 'e' (e)=>{}.this e is any object,the e boject has too mcuh properties, through which it tell all info about,like on which event it is fired,what type of event is fired and soo on.has property target throug which it give element  on which event it is fired.target object has property value,throug which it gives value of input.
+when we click inside input field, then it says, we have focused it inside the input. When we click outside, then it gets blurred.
+
+// focus event is fired when we enter in input
+userNameInput.addEventListener('focus',(e)=>{
+    console.log("focused event",e)
+    // console.log("focused event")
+})
+// focus event is fired when we exit from input
+userNameInput.addEventListener('blur',(e)=>{
+    console.log("blurred event",e)
+})
+
+note:- diffrent type of fired give diffrent type of object.When different events are fired in JavaScript, the event handler receives an event object, and the type of event object depends on the event that was triggered. Here’s a breakdown of event types and their corresponding event objects:
+
+Event Types and Their Corresponding Event Objects
+Event Fired	Corresponding Event Object in Browser
+focus, blur	FocusEvent
+change	Event
+input	InputEvent
+click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseout, contextmenu	MouseEvent
+keydown, keyup, keypress (deprecated)	KeyboardEvent
+copy, cut, paste	ClipboardEvent
+drag, dragstart, dragend, drop, dragover	DragEvent
+scroll	Event
+submit, reset (on forms)	Event
+load, unload, error, beforeunload	Event
+resize	UIEvent
+touchstart, touchmove, touchend (on mobile devices)	TouchEvent
+
+When you run this in the browser and inspect the console, you will see:
+
+FocusEvent {isTrusted: true, ...} when focus or blur occurs.
+Event {isTrusted: true, ...} when change occurs.
+InputEvent {isTrusted: true, ...} when input occurs.
+ 
+
+ note:- by even.type we get type of event.
+
+ Button outside a form → Does nothing unless explicitly coded to do something.
+ Button inside a form → Acts as a submit button, causing a page reload.
+ Fix → Use event.preventDefault() or type="button" to stop unwanted form submission.
+
+ By default, clicking a <button> inside a <form> triggers a form submission, which reloads the page (if no action is specified, the page reloads itself).
+ If the button is outside a form, it does not have this behavior, so nothing happens.
+
+if we give value to propert action in form like `<form action="/search">` by click on submit button in form page redirect to that location which we give in action.and make url with "name" properties of input field.
+So, the form element works that it works like an anchor tag What does anchor tag do? It redirects to another page The form also redirects to another page We have to give the link here in the action.
+like if we have two input fields in form like name and email, then by clicking on submit button,
+page redirect to location which we give in action with url like:-
+
+if we have for like ```
+ <form action="/search">
+    <input type="text" id="username" name="username">
+    <input type="text" id="username" name="email">
+    <button>Click Me</button>
+</form>``` then by click on submit we will react at search page by url is:- "http://localhost:5500/search?username=ali&email=ali%40gmail.com".
+
+
+note:- with check of preserve log option our console.log() of first page does not clear even page redirect to another page or page reaload.
+we can stop default beaviour of reaload page with e.preventDefault() function.
+
+we can get form data with  instance of object FormData(form) like:-
+let myFormData=new FormData(form);
+for(let p from myFormData.entries()){
+    console.log(p)
+};
+by this method we can get valees and can send through api or in database.
+note:- button has default type submit.button must be needed for submit form.
+event.target can be change when we click on form then different,when input field then different,when click on button then different, that's we get value of different fields in form for submit.
+
+
+  console.log(e.target);  // change able
+    console.log(e.currentTarget);  //not change able
+    e.g:-
+    <form action="">
+    <input type="text" id="username" name="username">
+    <input type="text" id="username" name="email">
+    <button type="button">Click Me</button>
+</form>
+
+
+ console.log(e.currentTarget);  give us form every time because of this apply on form:-
+  form.addEventListener('click',(e)=>{})
+  But
+  console.log(e.target);  change when we according to event fire on element.

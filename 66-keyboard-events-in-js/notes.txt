@@ -1,0 +1,49 @@
+we will talk about keyboard events,when we press button on keybaord, event fired of keybaord,how we utilize that event,which key is pressed and what typed on the result of press key,
+there are three types of keyboard events,
+1) key up
+2) key press 
+3) key down
+
+first key press event,we can apply these keybaord event on onay element,but that element should be focus able, most common things we apply keybaord event on whole document,but we can apply on particular element,
+like:-
+let h1=document.querySelector('h1')
+let input=document.querySelector('input')
+h1.addEventListener('keypress',(e)=>{
+    console.log(e);
+    console.log("key press");   
+})
+input.addEventListener('keypress',(e)=>{
+    console.log(e);
+    console.log("key press");
+    
+})
+
+but for fire event first we must focus h1 element and then press any key for fire event.input is in focus by click on input, 
+e.key give the key value we typed, but e.code give the unique code of key.
+
+note:- those elements who are not focus able,we can make them focus able by giving propery tabindex="0",after giving this property, we can focus that element by pressing shift+tab. or by click on that element.
+notmally keyboard events give on window or document.
+
+// keyup event is fired when we released key after press
+window.addEventListener('keyup',(e)=>{
+    console.log(e);
+    console.log(e.key);
+    console.log(e.code);
+    console.log("key press");
+    
+})
+
+
+// keydown event is fired during the key press
+window.addEventListener('keydown',(e)=>{
+    console.log(e);
+    console.log(e.key);
+    console.log(e.code);
+    console.log("key press");
+    
+})
+
+
+
+
+

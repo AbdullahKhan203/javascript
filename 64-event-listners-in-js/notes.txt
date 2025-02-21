@@ -1,0 +1,182 @@
+In this lecture, we will discuss about events in javascript.
+we will see what are events in javascript and we can run events on our page to do anything, we can run a particular piece of code. For example, if a user clicks on a button, we can do a task. If a user drags something, we can do a task. If a user hovers over an element, we can do something. These are called events. For example, double-clicking, inputting, or pressing a key. These are the types of events in our browser. We can listen to an event.
+
+
+We can put an event listener on a particular element. As the event happens,
+
+we will know that it is an event. For example, if a user clicks, we will know that
+
+the user has clicked. After that,on the base of event we can run specific piece of code.
+for example we can run any code on the base of user click.
+
+how can we run basic form of events.
+we can apply click event on any element in js.like h1,card etc.
+e.g :-
+ ```<h1 onclick="console.log('clicked')">Adding Event Listeners</h1>
+ //run js-file function in html file.
+ <h1 onclick="sayHi()">Adding Event Listeners</h1>```
+
+ we can check events applied on element in developer tools tab' element's sidebar's tab 'Event Listners'.
+ In sidebar's tab 'Event Listners we can see event type that is applied on element.like e.g:-
+ click(event-type)>h1(element)>handler: f onclick(event).
+ basically js calls our function in event-type name function. for example:-
+ we call like  ```onclick="console.log('clicked')``` or ```onclick="sayHi()"```
+ so js make it behind like :-
+ function onclick(event){
+    onclick="console.log('clicked')
+    or
+    sayHi()
+ } 
+ and store this function in event object's(click and h1) property's(handler) value(f onclick(event)).
+ js make function by default and assign name same as event listner and store this function as value of property handler, and call our(user-making like day hi) function in bydefault function,like
+ function onclick(event){
+    onclick="console.log('clicked')
+    or
+    sayHi()
+ }.
+
+
+ there are 3 ways to call events in javasript. 1 is in html file and 2,3 in which we  call event in js file.
+ 1) us like:-
+ ```<h1 onclick="sayHi()">Adding Event Listeners</h1>```
+ 2)is like:-
+ // h1.onclick = sayHi
+// h1.onclick = secondSayHi
+
+3) is like:-
+card.addEventListener('click', () => {   
+})
+3rd mehod is recommended.
+ note:- we can watch too much events on element  in developer tools tab' element's sidebar's tab 'properties'. all start with 'on' word like onclick. default all are null, but when we apply event on element, than that particular property assign a value of function like ```f onclick(event)```.
+ And by the third method we add functionality in which we say that this code run only once.not run another time.this type of functionality can add with 3rd type.
+
+
+ douted:-When we doest add event listner  with 2nd method then js prevent to do more work,like 
+ js assing function `f onclick(event)` directly to onclick in developer tools tab' element's sidebar's tab event-listners like onclick:f onclick(event)  insted of this step ```click(event-type)>h1(element)>handler: f onclick(event) and furthur=> f onclick(event){ sayHi()}.```.
+   
+ 3rd method is more best because we can call more than one function with third medhod like:-
+   ```card.addEventListener('click', () => {  
+    sayHi() 
+})
+   card.addEventListener('click', () => {  
+    sayHiSecond() 
+})``` these two functions would run. but in first 1nd and 2rd method after function overwrite first function like :-
+```
+// h1.onclick = sayHi
+// h1.onclick = secondSayHi
+```, only secondSayHi would run.
+
+
+task:- create many cards with there numique numbers by clicking on single card that has '+' sign.
+
+
+
+
+
+
+
+
+< above notes in more detail sart>
+In this lecture, we will discuss events in JavaScript.
+
+### What are Events in JavaScript?
+Events in JavaScript are user interactions with a webpage, such as:
+- Clicking a button
+- Dragging an element
+- Hovering over an element
+- Pressing a key
+- Double-clicking
+
+These interactions trigger event handlers, allowing us to execute specific code based on the event.
+
+### How to Handle Events in JavaScript
+JavaScript allows us to listen for events and execute code when they occur. There are three main ways to add event listeners:
+
+#### 1. Directly in the HTML
+```html
+<h1 onclick="sayHi()">Adding Event Listeners</h1>
+```
+This method is simple but not recommended for large applications because it mixes HTML and JavaScript.
+
+#### 2. Assigning an Event Listener in JavaScript
+```js
+h1.onclick = sayHi;
+h1.onclick = secondSayHi;
+```
+This method directly assigns a function to an event property (`onclick`). However, if another function is assigned later, it overwrites the previous one.
+
+#### 3. Using `addEventListener` (Recommended)
+```js
+card.addEventListener('click', () => {   
+    sayHi();
+});
+card.addEventListener('click', () => {   
+    secondSayHi();
+});
+```
+This method allows multiple event listeners for the same event without overwriting previous ones. It is the preferred approach.
+
+### Checking Event Listeners in Developer Tools
+You can inspect event listeners in the **Elements** panel of Developer Tools:
+1. Select an element.
+2. Open the **Event Listeners** tab.
+3. You will see the event type (e.g., `click`), the element (e.g., `h1`), and the assigned event handler function.
+
+Additionally, in the **Properties** tab, you can find all possible events starting with `on` (e.g., `onclick`). If an event listener is set, the respective property will hold a function reference like `f onclick(event)`.
+
+### Task: Creating Multiple Cards with Unique Numbers
+We need to dynamically create multiple cards when clicking on the `+` card.
+
+#### Implementation:
+1. Select the necessary elements:
+```js
+const card = document.querySelector('.card');
+const container = document.querySelector('.container');
+```
+2. Define a function to create new cards:
+```js
+let num = 1;
+function addCard() {
+    let newCard = document.createElement('div');
+    newCard.classList.add("card-two");
+    newCard.innerText = num++;
+    container.appendChild(newCard);
+}
+```
+3. Attach the event listener to the `+` card:
+```js
+card.addEventListener("click", addCard);
+```
+Now, every time you click the `+` card, a new card with an incremented number will be added to the container.
+
+### Why `addEventListener` is Better?
+1. It allows multiple event handlers for the same event.
+2. Unlike `.onclick`, it does not overwrite previous event handlers.
+3. It provides more control, such as the ability to remove event listeners using `removeEventListener()`.
+4. It supports additional options, like running an event only once.
+
+### Summary:
+- Events allow interaction with web pages.
+- There are three ways to handle events: Inline HTML, direct assignment, and `addEventListener`.
+- `addEventListener` is the best method as it allows multiple handlers and better control.
+- Developer tools help inspect applied event listeners.
+- We created multiple dynamic cards using event listeners.
+
+**Task:** Try adding functionality to remove a card when clicking on it!
+<notes in more detail end/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

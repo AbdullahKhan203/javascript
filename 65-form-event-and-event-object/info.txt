@@ -1,0 +1,9 @@
+Summary of Input Field Events
+Event Type	Description
+Focus Events	focus, blur
+Input Events	input, change
+Keyboard Events	keydown, keyup
+Mouse Events	click, dblclick, mousedown, mouseup, mousemove
+Clipboard Events	copy, cut, paste
+Drag Events	drag, dragstart, dragend, dragover, drop
+Form Events	submit, reset
