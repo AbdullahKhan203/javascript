@@ -1,0 +1,66 @@
+event bubbling is that when we apply events in child and fire event on child elements, then it fires whole events of its parent if its parent have event.
+for example in this code:-
+<div class="green">
+        <div class="red">
+            <div class="blue">
+
+            </div>
+        </div>
+    </div>
+
+    if we apply event on blue, then if ren and green have event, then its parent(red,green) run by default.this process of run event till blue<red<green<document<window.this is called bubbling.if we  fired event on child, then its whole parent's events run automatically,if they have event on them.
+    like if we throw a stone on center of swimming pool its wave spread until it reaches on the edges of pool.we can stop this wave by using e.wventPropagation().
+
+    for example if we have this code :-
+    ```
+    let green=document.querySelector('.green')
+let red=document.querySelector('.red')
+let blue=document.querySelector('.blue')
+
+
+
+window.addEventListener('click',()=>{
+    console.log('window is clieked');
+    
+})
+document.addEventListener('click',()=>{
+    console.log('document is clieked');
+    
+})
+document.body.addEventListener('click',()=>{
+    console.log('body is clieked');
+    
+})
+green.addEventListener('click',()=>{
+    console.log('green is clieked');
+    
+})
+red.addEventListener('click',()=>{
+    console.log('red is clieked');
+    
+})
+blue.addEventListener('click',()=>{
+    console.log('blue is clieked');
+    
+})
+``` and if we fire event on child blue. the its parent by default running like if we click on blue event then its whole event run and console.log is :-
+```
+blue is clieked
+script.js:24 red is clieked
+script.js:20 green is clieked
+script.js:16 body is clieked
+script.js:12 document is clieked
+script.js:8 window is clieked```
+all existing fired from child to parent(blue<red<green<body<document<window).this is  called bubbling.
+we can stop this by applying e.stopPropagation();. this is because it stops spreading event.
+
+Event Caturing:-
+          Event Caturing is opposite of Bubbling.in event bubbling event hapening start form parent to child(on which event is fired).but Condition is that its parent have events.
+
+
+
+ note:- if we apply sequence in which some work according capturing phase and some according to bubbling, then its sequence change according to it.         
+
+
+
+
