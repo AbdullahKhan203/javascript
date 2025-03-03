@@ -1,0 +1,71 @@
+There are two phases in execution context:-
+1-memory Creation phase
+2-code execution phase
+
+in memory Creation phase memory is provided to our variables and store undefined to it.and in code execution pahse every variable get his actual value.
+ 
+every function which we create has its own execution context in which his variable are created.
+var firstName = 'Akash'
+let lastName = 'Singh'
+function sayHi(){
+    let a=12
+    let b=14
+    console.log(a,b)
+}
+for example:-according to above code:
+in memory Creation phase it becomes
+ var firstName = undefined
+let lastName = undefined 
+and in code execution phase:-
+var firstName = 'Akash'
+let lastName = 'Singh'
+
+we can watch its step by step execution pase in chrome developer tools tab "source" with applying debugger in code.
+
+this type of code is execute in script object in scrope tab.
+var firstName = 'Akash'
+let lastName = 'Singh'
+but in case of function, like:-
+function sayHi(){
+    let a=12
+    let b=14
+    console.log(a,b)
+} 
+its memoery execution face done in global object.In memoery creation phase function is store in global object hint:- sayHi: f sayHi() and we watch whole function by hover on it.
+so, the doubt is clear then if we call function in above line before creation,like:-
+  sayHi()
+  and then create function:-
+function sayHi(){
+    let a=12
+    let b=14
+    console.log(a,b)
+} 
+it would run successfully,because in first phase which is memoory creation, function store in global scope object.in execution pahse it would not create any issue.each function create his own execution context.for example  in case function inner cntext :-
+let a=12
+    let b=14
+    console.log(a,b)
+a new object name "this" is crated which contain "window" in local scope object which show execution of this function inner  contenxt.so every function crate his own execution context.
+
+When we run javascript code, immediately js engine scan whole code and create memory creation phase,and provided undefined to every varialbe and store function in global object and create execuion contenxt for function's inner context with "this object" which is found in Local execution execuion contenxt of function.Every function crate it own local execution content.And this loca object contain this object for function inner context execution.
+
+
+var firstName = 'Akash'
+let lastName = 'Singh'
+sayHi()
+function sayHi(){
+    let a=12
+    let b=14
+    console.log(a,b)
+}
+
+In execution phase of above code:-
+var firstName = 'Akash'
+let lastName = 'Singh' 
+execution check in script object of scope in source tab.
+after for the execuion code sayHi(), its hint store in global object,each function create its local execution object,which display execution of function in content in this object.in "this" object in local" object, we can watch the execution of function inner context,
+  let a=12
+    let b=14
+    console.log(a,b)
+
+
+

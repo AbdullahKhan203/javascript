@@ -1,0 +1,22 @@
+some method check in whole iteration if it find any condition true in any iteration, then it return true and stop checking furthur iterations.if it false then it goes to check next iteration.it check condition on base of truthy and falsy value in numbers array.
+like in this case :-
+let arr=[1,2,3,4,5,6,7,8,9]
+console.log(arr.some((elem)=>{
+  return elem
+}))
+it return true during first iteration  number 1.it stop check furthur iteration and return final ans true.
+but in this case :-
+let arr=[0,0,0,0,null]
+it return false, because first iteration it check 0 which is falsy.so it continues check furthur and since last iteration it does not find any single element that are truthy.so it return false. 
+
+if we doesnot return any thing in funcction like :-
+console.log(arr.some((elem,i)=>{
+    if(elem%2==1){
+        console.log(arr[i]) 
+    }
+
+}))
+so this function return undefined which is falsy value,so it retun false bydefault.if we return any thing then it works according to it.but if we doesnot return any thig then it give undefined.
+
+
+Every method is opposite of sum.like some check for only once,if any condifion full filled then it gives true.But every method give true only is condition full fill on all elements other wiase give false.

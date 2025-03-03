@@ -1,0 +1,34 @@
+
+
+function introduceMe(){
+    console.log("my name is ali");
+    
+    return "Khan"
+}
+
+if we run this function in console tab then it gives answer:-
+```my name is ali
+'Khan'```
+it gives both value which we print and which we return.
+but if we run in js file then it gives only print value :-
+```my name is ali``` 
+but not return value:-
+"Khan"
+if we get return value then we first store it in variable like:-
+ let storedValue=introduceMe()
+console.log("storedValue",storedValue)
+then we will get answer 
+```my name is ali
+storedValue Khan```
+
+
+
+//then ting we pass in main function called parameter
+function introduceMe('parameter'){
+    console.log("my name is ali");
+    
+    return "Khan"
+}
+//then ting we pass in calling function called argument
+introduceMe('argument')
+

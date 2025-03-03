@@ -31,3 +31,22 @@ table{
   border: 2px solid black;
   width: 40%;
 }
+
+
+/* tr{
+  display: flex;
+  flex-wrap: nowrap;
+} */
+
+
+.cancelUpdateTask{
+ background: red;
+ font-weight: bold;
+}
+
+
+.finalUpdateButton{
+ display: none;
+}
+
+

@@ -1,0 +1,123 @@
+What is call stack?
+Ans:-In JavaScript, the **call stack** is a data structure that keeps track of the execution of functions. It works on a **LIFO** (Last In, First Out) principle — the most recently called function gets executed first and is the first to be removed once it’s done.
+
+Let’s break down how the call stack works:
+
+1. **When a function is called**, a new execution context for that function is created and pushed onto the call stack.
+2. **When the function finishes execution**, its execution context is popped off the call stack.
+3. **The stack continues this way**, executing the function on top and removing it when done, until the stack is empty (or just has the global context).
+
+**Let’s see an example:**
+
+```javascript
+function first() {
+    console.log('First function');
+    second(); // Calling second() function
+    console.log('First function finished');
+}
+
+function second() {
+    console.log('Second function');
+    third(); // Calling third() function
+    console.log('Second function finished');
+}
+
+function third() {
+    console.log('Third function');
+}
+
+first();
+```
+
+**How the call stack works here:**
+
+1. `first()` is called → `first()` execution context pushed onto the stack.
+2. Inside `first()`, `second()` is called → `second()` execution context pushed onto the stack.
+3. Inside `second()`, `third()` is called → `third()` execution context pushed onto the stack.
+4. `third()` finishes → its execution context is popped off the stack.
+5. `second()` finishes → its execution context is popped off the stack.
+6. `first()` finishes → its execution context is popped off the stack.
+7. The call stack is now empty.
+
+**Output:**
+
+```
+First function
+Second function
+Third function
+Second function finished
+First function finished
+```
+
+**Call Stack Overflow:**
+The call stack has a limited size. If a function keeps calling itself without an exit condition (infinite recursion), the call stack gets overwhelmed, and you get a **"Maximum call stack size exceeded"** error.
+
+```javascript
+function recurse() {
+    recurse(); // No exit condition → call stack overflow
+}
+
+recurse();
+```
+
+Let me know if you’d like a deeper dive into execution contexts, stack traces, or anything else! 🚀
+
+
+Q:-What is stack-overflow?
+Ans:-A **stack overflow** in JavaScript (or in programming generally) happens when the **call stack** exceeds its maximum size. This usually happens when a function keeps calling itself indefinitely — often due to infinite recursion — without a proper exit condition.
+
+In JavaScript, every time a function is called, an **execution context** is pushed onto the call stack. If too many function calls are stacked without being resolved (i.e., finished and popped off), the stack gets too deep, and the program runs out of memory, causing a **stack overflow error**.
+
+**Example of stack overflow:**
+
+```javascript
+function recursiveFunction() {
+    console.log("Calling myself!");
+    recursiveFunction(); // No exit condition → infinite recursion
+}
+
+recursiveFunction();
+```
+
+**What happens here:**
+1. `recursiveFunction()` is called → it pushes an execution context onto the stack.
+2. Inside the function, it calls itself again → another execution context is pushed onto the stack.
+3. This keeps happening with no end, so the call stack keeps growing.
+4. Eventually, the call stack reaches its maximum size → **"Maximum call stack size exceeded"** error is thrown.
+
+**How to avoid stack overflow:**
+- Always make sure your **recursive functions** have a **base case** (a condition to stop recursion).
+  
+Fixed version of the example:
+
+```javascript
+function countDown(n) {
+    if (n <= 0) { // Base case to stop recursion
+        console.log("Done!");
+        return;
+    }
+    console.log(n);
+    countDown(n - 1); // Recursive call with a smaller number
+}
+
+countDown(5);
+```
+
+**Output:**
+
+```
+5
+4
+3
+2
+1
+Done!
+```
+
+**Other possible causes of stack overflow:**
+- Deeply nested function calls.
+- Circular references between functions calling each other without stopping.
+- Excessive use of recursion when iteration might be better.
+
+Let me know if you’d like me to explain how to manage call stacks efficiently or handle recursion better! 🚀
+

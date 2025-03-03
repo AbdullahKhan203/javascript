@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
+<script src="./script2.js" defer></script>
     <title>todo-app</title>
 </head>
 <body>
@@ -16,11 +18,12 @@
         <input type="text" id="title" placeholder="task title">
         <input type="text" id="description" placeholder="task description">
         <input type="date" name="" id="date" title="due date" placeholder="due date" placeholder="due date">
-        <button onclick="AddTask()">Add Task</button>
+        <button id="addButton">Add Task</button>
+        <button class="finalUpdateButton">Update Task</button> 
     </div>
    
-    <!-- <button>Delete Task</button>
-    <button>Update Task</button> -->
+    <!-- <button>Delete Task</button>-->
+    
 </div>
 <h2>Your tasks are......</h2>
 <div class="display-tasks">
@@ -48,7 +51,7 @@
         
     </table>
 </div> 
-<script src="./script.js"></script>
+
 </div>
 </body>
 </html>

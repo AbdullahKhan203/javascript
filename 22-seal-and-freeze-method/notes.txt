@@ -1,0 +1,87 @@
+when we change variable for example:-
+let username="ali"
+then we change it:-
+username="khan"
+actually we chnage variable(type string) address which store in username, for example "ali" has address @81 and "khan" has @152 for example which is store in username like:-
+ let username=@81;
+ when we replace "ali" by "khan".Then its address would be change which is store in varialbe username like:-
+ username=@152;
+ so, in this case "ali" is remove from memory and username has address of string "khan", which has address @152.
+But object in case of object there is different secenrio.
+ if we have object user like:-
+ let user3={
+    firstName:"akash",
+    lastName:"khan",
+    age:24,
+    isGraduate:false,
+    isAdult:true,
+    hasJob:false,
+    address:{
+        city:'fsd',
+        pinCode:"786",
+        state:'punjab',
+        moreDetails:{
+            population:12345678,
+            area:'786 sq km'
+         }
+        
+    }};
+this case it check whole address of object.for example whole object has address @81975.
+if add a new property in object like:-
+user3.hasMarried:false;
+then in this case address store in user3 "@81975" become same.but a new key "hasMarried" is addedd in object user3,which has addesss of word "false" like hasMarried:@75;
+but if change whole object like:-
+user3={};
+in this case address of object change "@81975" to another like "@79815".which is actually store in user3 like user3="@79815".
+Note:- normally we declare object with const keyword, by this can add or delete or modiffy properties of object, but cannot change the addesss of whole varialbe like this user3={};
+
+if change the addesss of whole varialbe, then we cannot get acces of old address object, js replace it by new object.
+if we want to delete property of object then we would use delete keyword like:-
+delete user3.firstName;
+if object key successfully deleted then it return true otherwise return false.
+for check propery object has or not we user "in" method.
+'firstName' in user3;
+
+What is diff b/w object.seal() and object.freeze()?
+In JavaScript, `Object.seal()` and `Object.freeze()` both control how objects can be modified, but they have different levels of restriction. Let’s break down the differences:  
+
+**`Object.seal()`**:  
+- **Prevents adding new properties** ✅  
+- **Prevents deleting existing properties** ✅  
+- **Allows modifying existing property values** ✅  
+
+```javascript
+const obj = { name: "Alice" };
+Object.seal(obj);
+
+obj.age = 25;          // ❌ Cannot add new property
+delete obj.name;      // ❌ Cannot delete existing property
+obj.name = "Bob";     // ✅ Can modify existing property
+
+console.log(obj);     // { name: "Bob" }
+```
+
+**`Object.freeze()`**:  
+- **Prevents adding new properties** ✅  
+- **Prevents deleting existing properties** ✅  
+- **Prevents modifying existing property values** ❌  
+
+```javascript
+const obj = { name: "Alice" };
+Object.freeze(obj);
+
+obj.age = 25;          // ❌ Cannot add new property
+delete obj.name;      // ❌ Cannot delete existing property
+obj.name = "Bob";     // ❌ Cannot modify existing property
+
+console.log(obj);     // { name: "Alice" }
+```
+
+**Key difference**:  
+- **`Object.seal()`** lets you *change* the values of existing properties.  
+- **`Object.freeze()`** makes the entire object *completely immutable*.  
+
+Let me know if you’d like a deeper dive into when to use each! 🚀  
+
+
+

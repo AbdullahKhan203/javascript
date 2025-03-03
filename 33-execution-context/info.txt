@@ -1,0 +1,55 @@
+In JavaScript, **execution context** is an environment where JavaScript code is executed and evaluated. It defines what variables, functions, and objects are accessible at a particular point in the code and how the code behaves.
+
+There are three main types of execution contexts:
+
+1. **Global Execution Context (GEC)**:  
+   - Created when the JavaScript file is first executed.
+   - It’s the default context where global variables and functions live.
+   - In a browser, it’s associated with the `window` object; in Node.js, it’s the `global` object.
+   - Only one global execution context exists in a JavaScript program.
+
+2. **Function Execution Context (FEC)**:  
+   - Created whenever a function is called.
+   - Each function gets its own execution context.
+   - Multiple function execution contexts can exist simultaneously, forming a stack (the **call stack**).
+   
+3. **Eval Execution Context** (Rarely used):  
+   - Created when the `eval()` function is used to execute a string of JavaScript code.
+   - It’s generally discouraged due to security and performance reasons.
+
+**Phases of Execution Context:**
+
+When an execution context is created, it goes through two phases:
+
+1. **Creation Phase**:
+   - **Variable Object (VO)**:  
+     - Stores function declarations and variables (initialized to `undefined`).
+   - **Scope Chain**:  
+     - Consists of the current context and its outer (parent) contexts, used for variable lookup.
+   - **`this` Binding**:  
+     - Determines what `this` refers to (depends on how the function was called).
+
+2. **Execution Phase**:
+   - Code is executed line by line.
+   - Variables are assigned values, and functions are invoked.
+
+**Call Stack:**
+JavaScript keeps track of execution contexts using the **call stack**:
+- When a function is called, its execution context is pushed onto the stack.
+- When the function finishes, its execution context is popped off the stack.
+
+**Example:**
+
+```javascript
+// Global Execution Context created
+var name = "Alice";
+
+function greet() {
+    // Function Execution Context created
+    console.log("Hello, " + name); // 'name' is accessed from the scope chain
+}
+
+greet(); // 'greet' execution context is pushed onto the call stack and then removed after execution
+```
+
+Let me know if you’d like me to dive deeper into any part of this! 🚀

@@ -1,0 +1,29 @@
+the consoles we does in function is not actually a result of function,actually result of function is which we return in function.if we does not return anything in function , then function return bydefault "undefined".Which is actually a result of function like:-
+
+function addTwoNumbers(){
+    console.log(5+6)
+}
+
+addTwoNumbers()
+
+let ans=addTwoNumbers()
+console.log(ans);  // undefined 
+
+in this function ` console.log(5+6)` is not give the answer of function if we want that function give result then we must give like:-
+function addTwoNumbers(){
+    console.log(5+6)
+    return 5+6;
+}
+
+addTwoNumbers() // 11 for  console.log(5+6) and undefined for not return.
+
+let ans=addTwoNumbers()
+console.log(ans);  // 11 
+
+
+note:- if we runting function in function then it is called high order function.we can also pass function in function and even reurn function in function in high order functions.
+
+we can also does this like,it will work correctly:-
+let ans=addTwoNumbers(addTwoNumbers(6,4),addTwoNumbers(4,6))
+console.log(ans); //20 
+
