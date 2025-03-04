@@ -1,0 +1,14 @@
+global scope is found in two catagories:-
+1)global(window) scope Object(global and window objects are same) 2)Script scope object
+note:- we can check shope in console developer tools tab source.
+Those variable are crated by let and const are shifted in script scope object.Script scope is also a  global scope.
+But variabel created by use of var found in global or window scope.
+
+note:- for better undersanding we can say thay glocal socpe containes two script scope and window scope.
+the variable which are in global scope would be excessable in whole page.
+note:- we can stop execution of code with debugger keyword.
+the function which we write in page can be excessable in window object like window.sayHi().
+But the variabels which are in script are not excessable with like window.username give undefined.
+But both are global scope variables.
+
+

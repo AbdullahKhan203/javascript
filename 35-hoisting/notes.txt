@@ -1,0 +1,40 @@
+Hoisting is like getting excess any variable or function before declaration, if give us not any error and run  correctly,it is called hoisting.
+Like we have read in memory creation phase, all variables assing undefined,before code execution phase.
+for example we excess variable before declaration like:-
+console.log(username); // undefined
+const username="ali";
+
+note:-if we use var then our variable would go in global scope object according to memory creation phase.In case of const it i our variable display in script scope.
+
+Successfully histing is done with var, not possible with let,const.JS add variable in temporal dead zone with let,const.
+Hoisting is also done with let,const but js add that variable in temporal dead zone,so we can not excess that variable.
+
+Q:-What is temporal dead zone (TDZ)?
+And:-In JavaScript, a temporal dead zone (TDZ) is the period of time when a variable is declared but not yet initialized. During this time, the variable cannot be accessed and will throw a ReferenceError if used. 
+
+Functions,classess in js are hoisted properly.
+There are two ways to create a function :-
+1. function sayHi(){
+
+}
+sayHi() is called function declaration
+2.var sayHi=function(){
+
+}
+var sayHi is called function expression.But both are also called function defination.
+If we declarate function with expression, then our function is not hoistable but our varible show undefined which show that it will hoistable.When we declare functionwith expression then this parat:-
+function(){
+
+} is called anonymous function.
+
+
+note:- some time we create anonymous function and not declare them any name, this concept is called IIFE function.IIFE stand for immediatey invoked function expression.
+An IIFE (Immediately Invoked Function Expression) in JavaScript is a function that’s defined and executed immediately after its creation. It looks like this:
+
+(function() {
+    console.log("This is an IIFE!");
+})();
+
+
+
+

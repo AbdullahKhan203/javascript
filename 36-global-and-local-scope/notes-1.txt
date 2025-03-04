@@ -1,0 +1,184 @@
+How scope create in our program?
+Ans:- global scope found in 2 catagories 
+1)Window object 2)Script scope
+Window is an object in which our whole varibales and functions found.we get this by window.add()
+during memory crea phase whole code create his memory so we get whole code in window object.
+
+The variables which is in Window object or Script scope,we can use any where i program.
+What are difference between thses two?
+1)let and const varibles goes to script scope || var object goes to window object.
+actually variables created by var can access by
+ window.a  //50
+  because the in window object.but variables that are created with let and const are in script scope.variables that are created with let and const cannot be excessable in window object.
+  if we try to excess variables that are created with let and const variable, we get undefined.
+  a variable create in global-scope>window-object while username and userage in   global-scope>script-scope.
+
+  the variables that are in global scope can be excessabel any were in program.but the diff is that var creaed varaibles can get by window.a and with out var can't get by window.username and window.userage.
+  the function of whole page also include in window ojbect, which we can get by widow.add();
+
+When we call add function in js like add(); then its scope in created in scope tab in source tab of developer tools.its scope name is "local" which is actually an object,which is called local scope of add function.which contain this object in it. This local scope contains inner context of add function like add function is :-
+```function add(){
+    const x=5;
+    const y=8;
+    console.log(x+y);
+    
+}``` so its scope contain```local:{
+this:window object,
+x:5,
+y:8,
+
+}
+similarly every function create its own local scope in scope tab.
+during the execution of function,each function add in stack remove from stack after execution.During the execution of function local scope object of function created in scope tab,which will finish after execution of function.
+We can easily determine this that which function's local scope  object appearing in sope tab, by watching function name in stack tab with blue arrow with function name.
+if we execute this code ```
+debugger
+const username="anurag"
+let userage=25
+var a=50;
+function add(){
+    const x=5;
+    const y=8;
+    console.log(x+y);
+    subtract()
+}
+
+
+add()
+
+function subtract(){
+    const x=10;
+    const y=5;
+    console.log(x-y);
+}
+
+
+
+
+console.log("program ended")``` then first local create of add function and add is displaying stack and subtract() call in add so subtract() mean while add in stack,and local function displaying of subtract(), and aafter execution of subtract function sub function remove would remove from stack, then again stack present on add function and local object displaying of add function and finally add would remove from scople and its local object would vanish,
+
+
+
+
+<more detail content start>
+You're right! I missed the explanation about the **stack tab** in developer tools. Here’s the complete version including that:  
+
+---
+
+## **Understanding Scope in JavaScript**  
+
+### **How is Scope Created in a Program?**  
+In JavaScript, scope determines where variables and functions can be accessed in your code. Scope is created in two main categories:  
+
+### **1. Global Scope:**  
+- **Window Object Scope:** The `window` object in browsers holds all variables and functions created with the `var` keyword. These variables and functions can be accessed using `window.variableName`.  
+  ```javascript
+  var a = 50;
+  console.log(window.a); // 50
+  ```  
+- **Script Scope:** Variables declared with `let` and `const` are part of the script scope and are not attached to the `window` object. They **cannot** be accessed using the `window` object:  
+  ```javascript
+  let username = "anurag";
+  const userage = 25;
+  console.log(window.username); // undefined
+  console.log(window.userage); // undefined
+  ```
+
+### **Key Differences Between Window Scope and Script Scope:**  
+✅ `var` variables go to the **window object** and can be accessed through `window.variableName`.  
+❌ `let` and `const` variables go to the **script scope** and cannot be accessed through the `window` object.  
+✅ Functions declared globally also go to the `window` object and can be accessed like this:  
+```javascript
+function add() {
+    console.log("This function is part of the window object");
+}
+window.add(); // Works fine
+```
+
+### **2. Local Scope (Function Scope):**  
+When a function is called, it creates its **own local scope**. This local scope contains:  
+- The `this` keyword (refers to `window` in global context).  
+- All variables declared inside the function.  
+
+Example:  
+```javascript
+function add() {
+    const x = 5;
+    const y = 8;
+    console.log(x + y);
+}
+```
+The local scope of the `add` function looks like this:  
+```
+local: {
+    this: window,
+    x: 5,
+    y: 8
+}
+```
+
+---
+
+## **How Scope Works in Stack Tab (Developer Tools)**  
+
+Let's analyze this **step-by-step** using the following code:  
+
+```javascript
+debugger;
+const username = "anurag";
+let userage = 25;
+var a = 50;
+
+function add() {
+    const x = 5;
+    const y = 8;
+    console.log(x + y);
+    subtract();
+}
+
+function subtract() {
+    const x = 10;
+    const y = 5;
+    console.log(x - y);
+}
+
+add();
+console.log("Program ended");
+```
+
+### **Execution Flow in the Stack Tab:**  
+1️⃣ **When `add()` is called:**  
+   - The local scope of `add` is created and added to the **Stack Tab**.  
+   - The function appears in the **Call Stack**.  
+   - Inside `add()`, `subtract()` is called before `add()` completes.  
+
+2️⃣ **When `subtract()` is called:**  
+   - The local scope of `subtract` is created.  
+   - Now, **both** `add()` and `subtract()` appear in the **Call Stack**, but `subtract()` is on top because it's executing.  
+   - In the **Scope Tab**, we now see the local variables `x = 10` and `y = 5`.  
+
+3️⃣ **When `subtract()` finishes execution:**  
+   - `subtract()` is **removed** from the **Call Stack**.  
+   - The execution returns to `add()`.  
+
+4️⃣ **When `add()` finishes execution:**  
+   - `add()` is removed from the **Call Stack**.  
+   - The program moves to `console.log("Program ended")`.  
+
+5️⃣ **Final Output in Console:**  
+   ```
+   13
+   5
+   Program ended
+   ```  
+
+### **How to See This in Developer Tools?**  
+1. Open **Chrome Developer Tools** (`F12` or `Ctrl + Shift + I`).  
+2. Go to the **Sources** tab.  
+3. Add a **breakpoint** or use `debugger;` in the code.  
+4. Step through the execution and observe the **Call Stack** and **Scope Tab**.  
+
+---
+
+This explanation **now includes** the **Stack Tab** and how function execution appears in the **Call Stack** during debugging. Let me know if anything needs more clarification! 🚀
+<more detail content end>

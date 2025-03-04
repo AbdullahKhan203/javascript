@@ -1,0 +1,157 @@
+Alright — let’s fully break down the **lexical scope** of each function in this updated code!  
+
+---
+
+**What is Lexical Scope?**  
+Lexical scope is all about **where a function is defined in the code**, not where it’s called. Functions in JavaScript have access to:  
+
+- Their **own variables**  
+- Variables from their **parent functions**  
+- Variables from the **global scope**  
+
+This is called the **"Scope Chain"**, where a function looks outward to find variables.  
+
+---
+
+**Code Breakdown:**  
+
+```javascript
+const username = 'Anurag';
+let userAge = 25;
+var a = 50;
+
+debugger;
+function subtract() {
+  const x = 15;
+  const y = 18;
+  console.log(x - y); // -3
+  console.log(username); // 'Anurag' (global variable)
+
+  function child() {
+    const childName = 'Golu';
+    console.log(childName); // 'Golu'
+    console.log(y); // 18 (inherited from parent `subtract()`)
+
+    function grandChild() {
+      const grandChild = 'molu';
+      console.log(grandChild); // 'molu'
+      console.log(username); // 'Anurag' (still accessible from global scope)
+    }
+
+    grandChild(); // Calling grandChild inside child
+  }
+
+  child(); // Calling child inside subtract
+}
+
+subtract(); // Calling subtract function
+
+console.log('Program Ended');
+```
+
+---
+
+**Lexical Scope of Each Function:**  
+
+1️⃣ **Global Scope:**  
+- **Accessible Variables:**  
+  - `username = 'Anurag'`  
+  - `userAge = 25`  
+  - `a = 50`  
+- **Functions Available:**  
+  - `subtract()`  
+- **What It Can’t Access:**  
+  - Variables inside `subtract()`, `child()`, or `grandChild()`  
+
+---
+
+2️⃣ **`subtract()` function:**  
+- **Lexical Scope:** Global Scope  
+- **Accessible Variables:**  
+  - Its own: `x = 15`, `y = 18`  
+  - Global: `username = 'Anurag'`, `userAge = 25`, `a = 50`  
+- **Functions Available:**  
+  - `child()`  
+- **What It Can’t Access:**  
+  - `childName` (inside `child()`)  
+  - `grandChild` (inside `grandChild()`)  
+
+---
+
+3️⃣ **`child()` function:**  
+- **Lexical Scope:** Inside `subtract()` (inherits from `subtract()` and global scope)  
+- **Accessible Variables:**  
+  - Its own: `childName = 'Golu'`  
+  - Parent (`subtract()`): `y = 18`, `x = 15`  
+  - Global: `username = 'Anurag'`, `userAge = 25`, `a = 50`  
+- **Functions Available:**  
+  - `grandChild()`  
+- **What It Can’t Access:**  
+  - `grandChild` (inside `grandChild()`)  
+
+---
+
+4️⃣ **`grandChild()` function:**  
+- **Lexical Scope:** Inside `child()` (inherits from `child()`, `subtract()`, and global scope)  
+- **Accessible Variables:**  
+  - Its own: `grandChild = 'molu'`  
+  - Parent (`child()`): `childName = 'Golu'`  
+  - Grandparent (`subtract()`): `x = 15`, `y = 18`  
+  - Global: `username = 'Anurag'`, `userAge = 25`, `a = 50`  
+- **What It Can’t Access:**  
+  - Nothing — it has access to everything up the scope chain!  
+
+---
+
+**How the Scope Chain Works Here:**  
+
+```
+Global Scope
+   └──> subtract() Scope
+          └──> child() Scope
+                 └──> grandChild() Scope
+```
+
+- `grandChild()` has access to everything above it:  
+  - `childName` from `child()`  
+  - `x` and `y` from `subtract()`  
+  - Global variables like `username`, `userAge`, and `a`  
+
+---
+
+**Why This is Called Lexical Scope:**  
+- "Lexical" = **based on where the function is defined in the code**.  
+- **Not based on where it’s called** — just based on **where it sits in the code**.  
+
+Let me know if you’d like me to clarify or dive deeper into anything! 🚀  
+
+
+Block scope:-
+this is called block {}.
+if we use let or const in block like:-
+```
+{
+        let num1=78;
+        console.log(num1)
+    }``` then its scope in only in this,means num1 print only in console when we write this in block.
+    but if declare its variabel with var,then its scope expand,now its scope is up to the function in which it is used,for example:-
+    ```function child(){
+    const childName='Golu';
+    console.log(childName);
+    console.log(y)
+
+    {
+        var num1=78;
+    }
+    
+    function grandChild(){
+        const grandChild='molu';
+        console.log(grandChild);
+        
+    }
+    grandChild()
+    console.log(num1)
+}```
+now we can excess num1 in whole function, but out of function it will not print and give error.
+
+note:- when we are debugging line to line in developer tools,then we watch diffrent objects in scope tab,which means that the current line on which we are present,these object have scope.for example if we are in line of block,then we watch object in scope tab are block,local,closure,script,global,which means scope of block,local,closure,script,global are present on this line,means how much things i can use on this line.
