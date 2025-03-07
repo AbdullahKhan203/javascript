@@ -1,0 +1,43 @@
+like we can pass arrays,objects,boolean in function similarly we can pass function in function and can return function from function.
+
+the function in which we pass functon as a paramenter is called high-order-function.
+the function which we pass as an argument in function is celled callback function,bacuse that function would called back in high-order-function,that is why we called that function a high-order-function.
+for example
+
+//a is called higher order function
+function a(b) {
+    console.dir(b);
+    b()
+}
+
+
+
+
+
+a(function() {
+    console.log('Hiiiiiiiiiiiiiiiiiii');
+})
+
+// in above code this ```function() {
+    console.log('Hiiiiiiiiiiiiiiiiiii');
+}``` anonymous function is called callback function,because this is call back in high-order-function.
+
+note:- we can pass array,object and even function in function and can also reutn array,object and function in function.if we check type of function then it give its type "function" but behind the scene it is an object.if we print in function in console.dir() then its give function in protortype,but when function go deep in prototype object, then it gives object in protptype,which shows function is an object.if we print function with console.log() then it print function as it is.so best practice is we musht use console.dir() for get functon as an object.if we try to print stirng,numbers like "Hiiiii" or 89898989 in console.dir("Hiiiii") then it print as it is like console.log() but we print things like function then it give function as object.
+
+
+note:- some people thing that this numbers like 898989 is an object.But it is not true acutally  in js a keyowrd "Number" exist which is a construtor function,which has too much number relate mehhods,which is a functio,but behine the scene it is an object, but actual numbrs are not an object like 898989 etc.keyword "string" is also has sam case.since function is an object,so we add properties and values in it like in above functon a we can add properties and value like a.userAge=25; etc.
+
+Keep in mind:- when we give function like this withou name like```function() {
+    console.log('Hiiiiiiiiiiiiiiiiiii');
+}``` then js give it name anonymous by default.
+
+
+
+if we pass string in parameter,then it gives error in during running like
+function a(b) {
+    console.dir(b);
+    b()
+}
+
+a("hiii") 
+not we get error of code `b()`

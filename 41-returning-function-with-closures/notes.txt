@@ -1,0 +1,148 @@
+when we pass parameter as a function then the function which receive arguments is called highorder-function, when we return function from function then it is also called high-order-function.The function which also return function may also have closure in some cases.
+for example :-
+const a = 4
+const b = 6
+function parent(){
+    function add(){
+        console.log(a+b);
+     }
+
+     return add;
+}
+this is called high-order-function bacuse parent function retrun another function add.
+but if we write this in way
+```
+
+function parent(){
+    const a = 4
+const b = 6
+    function add(){
+        console.log(a+b);
+     }
+
+     return add;
+}
+now variable a and b become property of parent function,now we can watch closures in scope tab,closure is become when we return inner functon from outer function and  child function use anything of parent function like add function use a and b variable of parent function.
+in closure object we know that it is closure of parent function and value use by child function {a: 4, b: 6} of parent function.
+
+Remember:- in normal scenerio(without closure),this {a: 4, b: 6} would delete after execution phase from scope,but in case of closure  this {a: 4, b: 6} which is parent of parent function  is save in scope object and not clear by memory after code execution phase.
+
+If we make function in this way like 
+```
+function outer(){
+    const a = 4
+function parent(){
+const b = 6
+    function add(){
+        console.log(a+b);
+     }
+
+     return add;
+}
+return parent()
+
+}
+```
+now we get two closure which is use in child function add.
+first closue is a of outer function.
+
+```Closure (outer) {a: 4}```
+second closue is b of parent function.
+```Closure (parent) {b: 6}```.
+these two closures we can watch in scope tab,which is not delete even after code execution phase.
+
+
+
+<detail content Start>
+In JavaScript, a function that takes another function as a parameter or returns a function is called a **higher-order function**. Let’s break this down with examples.
+
+**When a function receives another function as an argument:**
+```javascript
+function greet(name, callback) {
+    console.log("Hello, " + name);
+    callback();
+}
+
+function sayGoodbye() {
+    console.log("Goodbye!");
+}
+
+greet("Alice", sayGoodbye);
+```
+Here, `greet` is a higher-order function because it takes `sayGoodbye` as an argument.
+
+**When a function returns another function:**
+```javascript
+const a = 4;
+const b = 6;
+
+function parent() {
+    function add() {
+        console.log(a + b);
+    }
+    return add;
+}
+
+const addFunction = parent();
+addFunction(); // Output: 10
+```
+Here, `parent` is a higher-order function because it returns the `add` function.
+
+**Understanding Closures:**
+When a function is defined inside another function and uses variables from its parent function, it creates a **closure**.
+
+```javascript
+function parent() {
+    const a = 4;
+    const b = 6;
+
+    function add() {
+        console.log(a + b); // Using variables from the parent scope
+    }
+
+    return add;
+}
+
+const addFunction = parent();
+addFunction(); // Output: 10
+```
+In this case, `add` forms a closure. The variables `a` and `b` belong to the `parent` function, but they stay accessible to `add` even after `parent` has finished running. The closure preserves the `{a: 4, b: 6}` state, keeping it in memory.
+
+**Why closures keep variables alive:**
+Normally, when a function finishes execution, its variables are cleared from memory. But when an **inner function (like `add`)** depends on those variables, they stay in memory as part of the closure.
+
+**When multiple closures exist:**
+```javascript
+function outer() {
+    const a = 4;
+
+    function parent() {
+        const b = 6;
+
+        function add() {
+            console.log(a + b);
+        }
+
+        return add;
+    }
+
+    return parent();
+}
+
+const addFunction = outer();
+addFunction(); // Output: 10
+```
+In this case, `add` creates **two closures**:
+- `Closure (outer)` contains `{a: 4}`
+- `Closure (parent)` contains `{b: 6}`
+
+Both closures remain in memory and can be seen in developer tools under the **Scope** tab.
+
+**Key takeaway:**
+- A **higher-order function** either takes a function as an argument or returns a function.
+- A **closure** is created when an inner function accesses variables from its outer function, keeping those variables alive even after the outer function finishes execution.
+
+
+<detail content end>
+
+

@@ -1,0 +1,191 @@
+in the last video we saw what is setTimeout and setInterval. We can use setTimeout to tell our 
+code that it has to run after a certain amount of time. But setTimeout does not work like 
+a normal code. Behind the scenes, it behaves differently. So we will understand how setTimeout works. 
+And to make setTimeout work, we need some other things other than JavaScript engine. 
+We will see what are those things. Till now, we have seen call 
+stack, execution context, scope. All those are part of JavaScript engine. 
+But apart from that, there are some other parts in the browser that are 
+not in JavaScript engine, actually from outside of js engine, 
+Like setTimeOut and other this type of functions work with other things like event loop,que-stack,web apis work with call-stack.
+our noemal code like ```
+console.log("hi-1")
+
+setTimeout(function(){
+    console.log("hi-3")
+},0)
+
+for(let i=1;i<=4;i++){
+    console.log(i);
+    
+}
+console.log("hi-2")```
+first print hi-1 and then run function and then 4 times print value of i and then print  "hi-3".This code print line by line.
+But in case of setTimeOut there is a different scenerio,although we give  ready made function of setTimeOut to js, but during calling this high-order function,it does not go to call-stack tab in browser,instead it goes in some other place.
+instead of give output of above code like execute line by line 
+```
+hi-1
+hi-3
+1
+2
+3
+4
+hi-2
+``` it gives output 
+```
+hi-1
+1
+2
+3
+4
+hi-2
+hi-3
+``` 
+why value in highorder function come in last,this is because code instead of high-order function is a syncrous code which is execute line by line,which is execute line by line with one stack,so they print sequently but in case if high order it first send to web apis,where it wait till given time,after its code send to CallBack Queue,and event loop,event loop wait for empty call-stack,when call become free after execution of all syncrous code,then event loop, get function from callback back queue and provide them to call-stack, then its inner code come in call-stack and execute.that is why it come in last.
+
+
+JS put this highordern function in web apis insead of call-stack.journey of higher function execution is like web apis>callback queues>event loop>call-stack,while syncronous directly goes in call-stack.callback-queue work according to fifo(first come first out) form. but we apis send function according to their time, if function complete its time first then reach at call back queue first,if we write code 
+```
+function one(){
+    console.log("one")
+}
+function two(){
+    console.log("two")
+}
+function three(){
+    console.log("three")
+}
+setTimeout(one,10000)
+setTimeout(two,5000)
+setTimeout(three,2000)
+```
+in case three function run first,because three comple its time before two and one and react at callback-quesection first.then two and then first.
+but in this case of equal time like 
+```
+function one(){
+    console.log("one")
+}
+function two(){
+    console.log("two")
+}
+function three(){
+    console.log("three")
+}
+setTimeout(one,0)
+setTimeout(two,0)
+setTimeout(three,0)
+``` they run like one, two,three.
+this is because js engine does not wait for this tasks,instead js send this highorder function to web-apis,then callback-queue,then even-loop send this in call-stack after execution of syncrous code, and js engine continue execution synchronous code only with call-stack.
+
+note:- the code which is not going directly in call-stack called asynchronous code.
+
+we can visuaize all its working in website ```http://latentflip.com/loupe/```.here we visualize which code execute synchronous  and which code execute after end(asynchronous).
+
+
+
+<detail content Start>
+In the last video, we learned about `setTimeout` and `setInterval`. These functions help us delay code execution. For example, `setTimeout` tells our code to run after a certain amount of time. But `setTimeout` doesn’t work like regular synchronous code — it behaves differently behind the scenes. Let’s understand how it works.
+
+To make `setTimeout` work, we need more than just the JavaScript engine. So far, we’ve learned about concepts like the call stack, execution context, and scope — all of which are part of the JavaScript engine. But functions like `setTimeout` rely on additional parts provided by the browser, like the event loop, callback queue, and Web APIs.
+
+Let’s look at an example:
+
+```javascript
+console.log("hi-1");
+
+setTimeout(function() {
+    console.log("hi-3");
+}, 0);
+
+for (let i = 1; i <= 4; i++) {
+    console.log(i);
+}
+
+console.log("hi-2");
+```
+
+Expected output if code ran line by line:
+```
+hi-1
+hi-3
+1
+2
+3
+4
+hi-2
+```
+
+Actual output:
+```
+hi-1
+1
+2
+3
+4
+hi-2
+hi-3
+```
+
+Why does `hi-3` appear last, even though the delay is 0ms? It’s because regular code in JavaScript is synchronous — it runs line by line and goes directly to the call stack. But `setTimeout` is asynchronous. Here’s what happens:
+
+1. `console.log("hi-1")` goes to the call stack and executes immediately.
+2. `setTimeout` sends its callback function to the **Web APIs**, where it waits for the specified time (0ms here).
+3. The `for` loop runs, printing numbers 1 to 4 — this is synchronous and stays on the call stack.
+4. `console.log("hi-2")` also runs synchronously.
+5. Once all synchronous code finishes and the call stack is empty, the event loop takes the `setTimeout` callback from the **callback queue** and pushes it to the call stack.
+6. Finally, `console.log("hi-3")` runs.
+
+**Flow of asynchronous code:**
+```
+Web APIs → Callback Queue → Event Loop → Call Stack
+```
+
+The callback queue follows **FIFO** (First In, First Out), but Web APIs send functions based on their delay time. Let’s see another example:
+
+```javascript
+function one() {
+    console.log("one");
+}
+function two() {
+    console.log("two");
+}
+function three() {
+    console.log("three");
+}
+
+setTimeout(one, 10000);
+setTimeout(two, 5000);
+setTimeout(three, 2000);
+```
+
+Output:
+```
+three
+two
+one
+```
+
+Here, `three` runs first because its timer finishes first. Even though they were written in order, the Web API sends them to the callback queue based on their delay.
+
+When all delays are 0ms:
+```javascript
+setTimeout(one, 0);
+setTimeout(two, 0);
+setTimeout(three, 0);
+```
+Output:
+```
+one
+two
+three
+```
+
+Even with 0ms delay, they don’t run immediately. JavaScript first finishes all synchronous code and only then processes the callback queue.
+
+**Important Note:**
+- Code that runs directly on the call stack is called **synchronous**.
+- Code that goes through Web APIs, callback queue, and event loop is called **asynchronous**.
+
+To visualize how this works, check out this website: [http://latentflip.com/loupe/](http://latentflip.com/loupe/). It shows how synchronous and asynchronous code execute step by step.
+
+
+<detail content end>

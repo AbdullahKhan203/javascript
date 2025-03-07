@@ -1,0 +1,53 @@
+setTimeOut() is a high order function, which get function as an argument, actually it gets code and create behind the scene a file and keep our code in that file, and run our code from that file instead of our file script.js.for example:-if we write console.log("Khan"), and give time as second paramenter after that time our given code would run, for example we give time 5000 mili second, if we give below code 
+setTimeOut('console.log("khan")',5000)
+then we will get answer :-
+khan    VM:146 
+it means our code console.log("khan") is writen by js in file VM:146 which is created by browser,our code run on that file and we get this answer "khan".
+if we want to write code in multiple lines then we can write code 
+`setTimeout(`console.log("khan")
+    console.log("sb")
+    `,1000)` by using bactics.
+    if we write this code in console like
+    `setTimeout(`console.log("khan")
+    console.log("sb")
+    `,1000)`
+     then we will watch its return value, which is a number,but if we wan to get its value with our code, then we must store this code in varialbe.its return value is actually its id which we can use to cancel this functon running.its functon's id we give in function clearTimeout(id(return value of setTimeout function)).clearTimeout(id) is opposite of setTimeout().clearTimeout(id) cancel the execution of code which is in setTimeOut().
+
+
+ Keep in mind:- if want to go new line in console then we must print shift+enter because pressing only enter our code run instead of going new line.
+
+Remember:- we can also use clearInterval() instead of clearTimeout() functon.
+Normally we are not use directly clearInterval or clearTimeout.we use this according to condition with if else etc.
+
+
+we would not apply parenthesis in highorder function like:-
+const timer3=setTimeout(a,3000)
+function a(){
+    console.log("hi");
+}
+we should not apply parenthesis() with a, parenthesis would apply highorder function himself at tthe time of call.
+
+
+Note:- we can pass other values in high ordr function like:-
+setTimeout(a,3000,"hlo",786) and get these values in arguments in function like:-
+function a(){
+    console.log(arguments);    
+    console.log("hi");   
+}
+
+
+
+Important interview queston:-if we print tthis two lines like
+setTimeout("console.log('timer-2')")
+console.log("Hiiiiii")
+then below line would run first.this is because normal js code is syncrous(line by line) and 
+this code is setTimeout("console.log('timer-2')") is asyncronous(first save in memory then run code even when we give 0 second or not give time).
+
+
+Pay attention:- setTimeout call once, and setInterval call again and again, only this is difference, other things are same.
+
+we can also pass anonymous functon in these high order functions.
+
+
+
+Remember:-setInterval and setInterval and other highorders are out of js engine,it is a part of web API.
