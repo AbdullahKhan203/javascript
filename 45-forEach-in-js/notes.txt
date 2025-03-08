@@ -1,0 +1,22 @@
+Basicall for each is not a loop,it is a method because it use on object  with ".",unlike other loops.
+like const fruits = ['banana', 'apple', 'peach', 'mango', 'grapes']
+fruits.forEach(function(){
+    console.log("hi")
+})
+now its inner anonymous function run same number of times as fruits array have elements.
+we can also it like this:-
+fruits.forEach((x)=>{
+    console.log(x)
+})
+since its inner function use in parent function,so it is called callBack function,also called aero funciotn and anonymous funciotn.
+ 
+ we can also pass named function in forEach function like:-
+function named(el){
+    console.log(el)
+}
+fruits.forEach(named)
+since we pass callBack funciotn in high order funciotn,so dont need to pass parenthesis in high-order funciotn like :-fruits.forEach(named(el))
+
+
+
+Remember:- for each loop always always return undefined,even when we return other thing from method,yet it return undefined.

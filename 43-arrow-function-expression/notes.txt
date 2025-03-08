@@ -1,0 +1,20 @@
+there are three type of ways to make a function 
+1) with function keyword 
+function add(){
+
+}
+2)with expression
+const add=function(){
+
+}
+3)arraww function
+const add=(a,b)=>{return a+b}
+but we can short this like:-
+const add=(a,b)=>a+b   // called implicit return.
+since we does not declare function word in array function,so basically it is an expression.
+this is also a valid way to make arrow function :-
+const add=()=>(
+    Math.randow(Math.random+1)*10
+    )
+
+note:- arrow function is common for passing function as a calbacks.

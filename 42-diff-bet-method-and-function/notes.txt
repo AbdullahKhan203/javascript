@@ -1,0 +1,116 @@
+When we write function and add it in object then it is become a method.
+like:-
+functon add(a,b){
+    return a+b;
+}
+add is a function,but when we add it in object like
+const maths={
+    add: function(a,b){
+        return a+b;
+    }
+}
+now add function become a method.
+
+remember:- when we return a value in function and call function in any place,then after calling then function calling place replace by return value.for example:-
+in case of add function if we does:
+const maths={
+    add: function(a,b){
+        console.log(a+b;) 
+    }
+}
+then if we want to add like maths.add(5,5)+2 then it gives NaN because we try to add 2 in undefined,this is because add function does not return any thing,instead in consoles.
+but if we does code with return like this:-
+const maths={
+    add: function(a,b){
+        return a+b; 
+    }
+}
+then we can done maths.add(5,5)+3 it will work because function calling place replace by return value.
+
+
+Bonus tip:- js has a new feature in which we can make methods with out keyword function like:-
+```
+const maths={
+    add(a,b){
+        console.log(a+b;) 
+    }
+}
+```and this will work as like as by using keyword function.
+
+note:- we can also apply methods on string like "Hiii".toLowercase(),although stirng is not an object but we can we methond in it,this is because string is not an object , but string has an object rapper(topics use in constructor),actually we does not add method in string,actaully string has an object,there is always an object related to string,so that through that object we can execess these methods on string.String is primitive,string os not an object,basically js give us methods to use on string,but we can't directly apply on stirng,bacuse string in primitive,so an object is created for string,which become execessable automatically when we apply . infront of string.That object has all string methods.
+
+Keep in mind:- Every method is a function,but every function is not a method.
+
+
+<detail content start>
+In JavaScript, when we write a function and add it to an object, it becomes a **method**.
+
+**Example:**
+```javascript
+function add(a, b) {
+    return a + b;
+}
+```
+Here, `add` is just a regular function. But when we add it to an object:
+```javascript
+const maths = {
+    add: function(a, b) {
+        return a + b;
+    }
+};
+```
+Now `add` becomes a **method** of the `maths` object.
+
+**Important Note:**
+When a function returns a value and we call the function, the function call is replaced by the return value. Let’s see this with an example:
+
+```javascript
+const maths = {
+    add: function(a, b) {
+        console.log(a + b);
+    }
+};
+
+console.log(maths.add(5, 5) + 2); // Output: NaN
+```
+Why NaN? Because the `add` method only logs the result, it doesn’t **return** anything. By default, a function that doesn’t return a value gives `undefined`. So this is like trying to add `undefined + 2`, which results in `NaN`.
+
+Let’s fix this by adding a `return` statement:
+
+```javascript
+const maths = {
+    add: function(a, b) {
+        return a + b;
+    }
+};
+
+console.log(maths.add(5, 5) + 3); // Output: 13
+```
+Now it works because the function call is replaced by the return value.
+
+**Bonus Tip:**
+JavaScript allows a shorter way to write methods without the `function` keyword:
+
+```javascript
+const maths = {
+    add(a, b) {
+        console.log(a + b);
+    }
+};
+```
+This works exactly the same way!
+
+**Methods on Strings:**
+We can also apply methods on strings, like:
+
+```javascript
+console.log("Hello".toLowerCase()); // Output: "hello"
+```
+Even though strings are **not objects**, they have access to methods because JavaScript creates a **temporary wrapper object** around the string. This object gives us access to string methods.
+
+**Key Point:**
+- Every **method** is a function.
+- But not every **function** is a method. A function only becomes a method when it’s attached to an object.
+
+
+<detail content end>

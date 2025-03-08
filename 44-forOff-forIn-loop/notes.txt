@@ -1,0 +1,41 @@
+
+const fruits = ['banana', 'apple', 'peach', 'mango', 'grapes'];
+for of loop is better than for loop,bacuse in for loop we give value of i like:-
+for(let i=0;i<fruits.length;i++){
+    console.log(fruits[i])
+}
+but in case of for of loop it becomes easy:-
+for(var fruit of fruits){
+     console.log(fruit)
+}
+it values also clear from memory after code execution phase,but with var its scope become global.
+but with const its scope local.with const,or let every time a new variable would create and every time an new variable would add in variable.
+if we use "use strct" then we must necessary to give type of variable,other wise we can do this withou ttype like this:-
+(fruit of fruits)
+"use strict" often use in big projects.
+like this type of objects :-
+const person = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 50,
+    eyeColor: 'blue',
+    city: 'Bangalore',
+}
+it is not good to use for of loop.
+ for(const key of person) {
+     console.log(key);
+ }
+ for of loop give error in this case.it gives error "person is not iterateable".normal object is not iterateable object.array is iterateable object but not normal object.
+ since object is not iterable so we use for in loop on it :-
+for in loop get keys by default in case of iteration.
+we canot print it with like:-
+for(const key of person) {
+     console.log(person.key);  //5 times undefined,bacuse its think that person object has a prperty "key".does not use value of  iterate variable value "key".instead we give this like person[key]
+
+ }
+
+ we canot apply for loop on object,because of in case of object we can't find index of object lines.
+
+ note:- acutally for in loop is bit time consuming,so we should not use in on big object.instead we should use it another method  Object.keys(person) because it is faster than for in loop.if we need only values then we can use Object.values(person), if we need both then we can use Object.entries(person).
+
+ remember:- in keyword in object to check particular key is presned or not and for in are totally different not same.
