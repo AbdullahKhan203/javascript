@@ -1,0 +1,28 @@
+We are talking about default parameters in js.
+
+function multiply(a, b) {
+    return a * b
+  }
+
+  for example during the time of calling multiply function,if we forget give one argument,and call function like this ```multiply(5)``` and frget to give second argument then,it gives 'NaN',bacuase js add undefined by default for second parameter and '5 * undefined' is not a number.
+
+  for sake of default parameters, we give parameters like ```multiply(a, b=1)```so if user forget to give arguments of b then 1 bydefault added for b parameter, and cause unexpected answer like NaN.
+
+  note:- if we give null,empty string "",then it get them falsy value and conver them to 0 and get 0 instead of default parameter 1.
+e.g:-
+```
+multiply(5,undefined)
+5
+multiply(5,null)
+0
+multiply(5,"")
+0
+multiply(5,true)
+5
+multiply(5,false)
+0
+```
+
+
+
+  

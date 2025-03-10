@@ -1,0 +1,60 @@
+let nums1=[1,2,3,4,5]
+let nums2=[6,7,8,9,10]
+
+// ways to combine
+let concatedArr=nums1.concat(nums2)
+console.log("concatedArr",concatedArr);
+
+// another way
+let nums3=[...nums1,...nums2]
+console.log("nums3",nums3);
+// spread string in array
+let str="khan";
+let nums4=[...nums1,...nums2,...str]
+console.log("nums4",nums4);
+
+
+Note:-we can also spread objects in object.
+let user={
+    name:"ali";
+    age:25;
+}
+let copyUser={...user}
+//we can also add new property in new object like
+let copyUser={...user,,extraproperty:"extraproperty"}
+but spread operator does not copy prperly nested objects,spread copy first level of object properly,but does not copy properly values of nested object(means copy properly but if we modify one object then other modify by default,thats not good thing.).for copy object and nested object beterr way understand deep and shallo copy of object.
+
+
+
+
+if we want to add argument value like add whole elments of array so we can do this:- 
+let nums=[1,2,3,4,5,6,7,8,9,10]
+function addArguments(){
+    let sum=0;
+    for(let i=0;i<arguments.length;i++){
+        sum+=arguments[i]
+    }
+
+    console.log(sum);
+    
+
+}
+
+addArguments(...nums)
+instead of passing single arguments like this 
+let nums=[1,2,3,4,5,6,7,8,9,10]
+function addArguments(){
+    let sum=0;
+    for(let i=0;i<arguments.length;i++){
+        sum+=arguments[i]
+    }
+
+    console.log(sum);
+    
+
+}
+
+addArguments(nums[0],nums[1],nums[2],nums[3],nums[5] and so on)
+
+
+note:- we can pass array or string  as argument during function call not plain object.for more detail read info.txt.

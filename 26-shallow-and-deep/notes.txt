@@ -1,0 +1,45 @@
+let fruits=["apple","banana","orange"]
+let newFruits=fruits;
+newFruits.push("mango")
+newFruits.push("grapes")
+console.log(fruits);
+
+
+if we make an array from another array array, andn then change a new one array, then parent aray would be change,for example newFruits aray become with fruits, if we change newFruits array,then fruits array would be change automatically.
+This behaviour same works in object.
+
+let obj1={
+    name:"ali",
+    age:25,
+}
+let obj2=obj1
+obj2.fatherName="fiaz"
+console.log("obj2",obj2);
+console.log("obj1",obj1);
+is this case obj1 would become change.
+
+but it is not work in case of primitive data types.like:-
+let variable1="ali"
+let variable2=variable1;    // in this case both variable1 and variable2 have same address.
+variable2="khan"
+console.log("variable1",variable1);
+console.log("variable2",variable2);
+
+
+for making deep copy we can use method:- Object.assing(obj2,obj1)
+by making deep copy with this method both object would have different adress.
+but latest method is spread operator.another method is concat method for make new array.
+like let newArr=[].contac(fruits) like this.anoter method is like let newArr=fruit.slice(), this method make deep of whole array.
+
+note:- after making the deep copy both variable would store different address.
+remember:- spread operator in not make deep copy of nested object.it works only till level 1(so it is called shallow copy)
+
+
+So conclusion:-
+let obj2=obj1,  this is called 0 copy.
+let obj2={...obj1},  this is called shallow copy.
+let obj2={...obj1},  this is called shallow copy.
+let obj2=JSON.parse(JSON.stringify(obj1));,  this is called deep copy.
+
+
+

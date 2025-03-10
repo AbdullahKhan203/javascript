@@ -1,0 +1,41 @@
+arguments keyoword is a keyoword that we can get in functon in javascript except arrow function.Basically it looks like an array but actually it is not an array,becayse we can't apply array methods like mapp,filter,find and other array methods on it.for apply aray methods we first convert it into array with like ```let arr=[...arguments]``` then we will be able to apply array methods on it.
+its work is to get parameters from function even if we dont neet that parameters in funtion,if we apply parameters in function,No matter how many parameters we apply in  function it get whole paramets and add them into array like object with same indexing as array.then we  can use that parameters in function. 
+e.g:-
+
+
+add(1,2,3,4,5)
+function add(){
+    console.log(arguments);
+    let sum=0;
+    let i=0;
+    while(typeof arguments[i]== "number"){
+       sum+=arguments[i]
+       i++;
+    }
+    console.log("sum is",sum)   
+    // console.log(arguments[0]);
+    // console.log(arguments[1]);
+    // console.log(arguments[2]);
+    // console.log(arguments[3]);
+}
+
+Rememberer:- it is outdated keyword,es6 default parameters takes replace it.but in old codebases, it were previously used.we dont defined them it is defined by js.
+
+note:- even if we dont pass parmeter in funciotn and only pass arguments in function wille calling then also we can receive arguments in arguments in keyword like:- 
+e.get
+```
+function task(){
+console.log(arguments);
+let arr=[...arguments]
+
+let addResultWithReduce=arr.reduce((Element,accum)=>accum+Element,0)
+console.log(addResultWithReduce);
+
+
+}
+
+task(1,2,3,4)```
+in above example we dont pass parameter in ```function task(params)``` still we can receive arguments in funciotn,we oly pass arguments while calling.
+we can get arguments in form of indexing.
+
+

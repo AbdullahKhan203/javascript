@@ -1,0 +1,54 @@
+Q:-why we can't spread object as argument during function call?
+Ans:-When you say we **can’t spread an object as an argument during a function call**, that’s not entirely true — we *can* spread an object, but it depends on how the function is defined and what kind of arguments it expects.
+
+Let’s break down how it works.
+
+If you have an object like this:
+
+```javascript
+const user = { name: 'Alice', age: 25 };
+```
+
+You **can spread it** when calling a function that expects separate named parameters:
+
+```javascript
+function greet(name, age) {
+  console.log(`Hello, my name is ${name} and I'm ${age} years old.`);
+}
+
+greet(...user); // ❌ This will throw an error!
+```
+
+Why does this throw an error? Because the **spread operator (`...`) works on iterable objects like arrays, not plain objects**. `user` is an object, not an array, so JavaScript won’t know how to spread it into individual arguments.
+
+But if the function expects an **object**, you **can** spread the object like this:
+
+```javascript
+function greet({ name, age }) {
+  console.log(`Hello, my name is ${name} and I'm ${age} years old.`);
+}
+
+greet({ ...user }); // ✅ This works perfectly!
+```
+
+Here, we’re still spreading the object, but into another object — which works fine, and the function accepts it as an object parameter.
+
+If you really wanted to pass object properties as separate arguments, you could do this:
+
+```javascript
+greet(...Object.values(user)); // 🚨 This works, but order matters!
+```
+
+Or even:
+
+```javascript
+greet(user.name, user.age); // ✅ Clear and direct
+```
+
+**So the key points are:**
+
+- The spread operator works on arrays and iterable objects when spreading into function arguments.
+- If a function expects named parameters (like `name`, `age`), an object can’t be spread directly.
+- You can spread an object into another object if the function expects a single object parameter.
+
+Let me know if you want me to dive deeper into any of this! 🚀
