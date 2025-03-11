@@ -1,0 +1,57 @@
+// Array Destructuring
+
+let colors = ["red", "green", "blue", "black", "orange"];
+
+// 1. Basic Destructuring: Extracts the first two elements from the array
+// let [color1, color2] = colors;
+// color1 = "red", color2 = "green"
+
+// 2. Skipping Elements: Skips the first two elements and takes the third
+// let [,,color3] = colors;
+// color3 = "blue"
+
+// 3. Destructuring Using Object Syntax for Array Index: Extracts element at index 3
+let {3: colors3} = colors;
+// colors3 = "black"
+
+// -----------------------------------------------------------
+// Object Destructuring
+
+let obj1 = {
+    name: "khan",
+    age: 25,
+    address: {
+        city: "Islamabad",
+        state: "Punjab"
+    }
+};
+
+// 4. Basic Object Destructuring: Extracts properties into variables
+// const {name, age, address} = obj1;
+// name = "khan", age = 25, address = { city: "Islamabad", state: "Punjab" }
+
+// 5. Renaming Variables: Extracts 'name' and 'age' into 'username' and 'userage'
+const {name: username, age: userage, address} = obj1;
+// username = "khan", userage = 25
+
+// 6. Destructuring Nested Object Properties
+const {address: {city, state}} = obj1;
+// city = "Islamabad", state = "Punjab"
+
+// -----------------------------------------------------------
+// Function Parameter Destructuring
+
+// 7. Destructuring Object in Function Parameter
+// function userObject({name, age}) {
+//     console.log(name, age);
+// }
+// userObject(obj1);
+// Output: "khan", 25
+
+// 8. Destructuring Array in Function Parameter (Using Array Index)
+function printColors({1: color1, 4: color4}) {
+    console.log(color1, color4);
+}
+// Accessing the second and fifth elements from 'colors'
+printColors(colors);
+// Output: "green" "orange"

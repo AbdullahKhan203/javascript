@@ -1,0 +1,30 @@
+this is lecture in about rest params,which seems like spread operator,but very different according to functionality wise.
+note:-we can't call them rest operator.it is actualy rest params.
+if is used at the time of defining functon.it is used when we defined parameters in funcion.
+Basically it is replacement of arguments keyword.when we defined arugments in function then all arguments we can receive with arguments in function.Basically argument keyword has funcion in property  
+'calle' which is deprecated.that is why argumetns are not recommended.argument is not an array so can't use array methods in it.
+But with rest parameters we will get array in funcion,on which we can apply aray methods.
+for example:-we would  use spread operator,during pass arguments in function calling like ...nums1,it add arguments in add funcion like add(1,2,3,4) Basically it removes them from array and provide like 1,2,3,4.But at the time of receiving arguments in function  we would use rest parameters like```function add(...nums){}```,now can get arguments like '[1,2,3,4]' with use of ...nums in params which is actualy a rest params.we can use any keyword in params like ...sfdfsf etc.spread params receive arguments and add in array that we can use in function.it is better then arugments,which are actualy not an array.
+Basically spread operator used in arguments and rest params use in funcion parameter to receive argument and put them in array.
+remember:- rest params always use in last of parameters in case more than one parameters.like (a,b,...nums).if we use it in start or middle like (...nums,a,b) or (a,...nums,b) then it gives errror.
+
+
+const nums1 = [1, 2, 3, 4]
+
+function add(arguments) {
+    console.log(arguments);
+    let sum = 0
+    for(let i = 0; i < arguments.length; i++) {
+        sum = sum + arguments[i]
+    }
+    return sum
+}
+
+add(...nums1)
+
+
+
+note:- spread operator spread all values of array,rest operator collect all values.
+
+if we give function parames like (a,b,...nums),then a become 1,b become 2 and [3,4] become nums.
+if we give function parames like (a,...nums),then a become 1,[2,3,4] become nums.

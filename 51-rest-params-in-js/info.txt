@@ -1,0 +1,70 @@
+Q:-What is diff b/w spread operator and rest params?
+Ans:-
+The **spread operator (`...`)** and **rest parameters (`...`)** look the same — those three dots — but they’re used in very different ways. Let’s break it down.  
+
+---
+
+**Spread Operator (`...`)**  
+- **Expands** an array (or iterable) into individual elements.  
+- Used when **passing arguments** to a function or when creating new arrays/objects.  
+
+**Example:**
+
+```javascript
+const nums = [1, 2, 3];
+add(...nums); // Spreads the array into individual arguments
+```
+
+This is equivalent to:
+
+```javascript
+add(1, 2, 3);
+```
+
+Another common use is when **copying or merging arrays**:
+
+```javascript
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+
+const combined = [...arr1, ...arr2]; // [1, 2, 3, 4]
+```
+
+Or when copying objects:
+
+```javascript
+const obj1 = { a: 1 };
+const obj2 = { ...obj1, b: 2 }; // { a: 1, b: 2 }
+```
+
+---
+
+**Rest Parameters (`...`)**  
+- **Gathers** arguments into an array.  
+- Used when **defining functions** to collect multiple arguments.  
+
+**Example:**
+
+```javascript
+function add(...nums) {
+    console.log(nums); // nums is an array: [1, 2, 3]
+}
+
+add(1, 2, 3);
+```
+
+The `...nums` gathers all the arguments passed into the `add` function into a **single array** called `nums`.
+
+---
+
+**Key Differences:**  
+
+| Feature         | Spread Operator        | Rest Parameters        |  
+|----------------|-----------------------|-----------------------|  
+| Purpose         | Expands elements       | Gathers elements       |  
+| Where Used      | Function calls, arrays, objects | Function definitions |  
+| Data Structure  | Spreads individual elements | Combines into an array |  
+
+---
+
+Let me know if you want me to dive deeper into any of these — or show more examples! 🚀  
