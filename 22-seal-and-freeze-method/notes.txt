@@ -31,11 +31,31 @@ if add a new property in object like:-
 user3.hasMarried:false;
 then in this case address store in user3 "@81975" become same.but a new key "hasMarried" is addedd in object user3,which has addesss of word "false" like hasMarried:@75;
 but if change whole object like:-
-user3={};
+user3={};   
 in this case address of object change "@81975" to another like "@79815".which is actually store in user3 like user3="@79815".
-Note:- normally we declare object with const keyword, by this can add or delete or modiffy properties of object, but cannot change the addesss of whole varialbe like this user3={};
+Note:- normally we declare object with const keyword, by this can add or delete or modiffy properties of object, but cannot change the addesss of whole varialbe like this user3={}(explain in above line,which is created with let.);
 
-if change the addesss of whole varialbe, then we cannot get acces of old address object, js replace it by new object.
+if change the addesss of whole varialbe, then we cannot get acces of old address object, js replace it by new object.for xample :- if we declare object like:-
+```
+let user3={
+    firstName:"akash",
+    lastName:"khan",
+    age:24,
+    isGraduate:false,
+    isAdult:true,
+    hasJob:false,
+    address:{
+        city:'fsd',
+        pinCode:"786",
+        state:'punjab',
+        moreDetails:{
+            population:12345678,
+            area:'786 sq km'
+         }
+        
+    }};
+    ```and then we change it like:-
+    user3={}, then we can't search "akash" in memory.
 if we want to delete property of object then we would use delete keyword like:-
 delete user3.firstName;
 if object key successfully deleted then it return true otherwise return false.

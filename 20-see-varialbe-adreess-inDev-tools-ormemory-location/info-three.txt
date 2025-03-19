@@ -1,0 +1,93 @@
+Q:-So what type of code that are successsfuly remove after execution of code?
+Ans:-In JavaScript, variables, functions, and objects are successfully removed from memory (garbage collected) after execution when there are **no remaining references** to them. Let’s break down what kind of code gets cleaned up and why:
+
+### ✅ Successfully Removed After Execution:
+1. **Local Variables in Functions**  
+   When a function finishes execution and no closures capture its variables:
+   
+   ```javascript
+   function sayHello() {
+       let greeting = "Hello, World!";
+       console.log(greeting);
+   }
+
+   sayHello();
+   // 'greeting' is no longer accessible and gets garbage collected
+   ```
+
+2. **Unreferenced Objects**  
+   If an object becomes unreachable, it’s cleaned up:
+
+   ```javascript
+   let user = { name: "Alice" };
+   user = null; // The 'Alice' object is now unreferenced and gets cleaned up
+   ```
+
+3. **Event Listeners Properly Removed**  
+   When event listeners are detached, their references are cleared:
+
+   ```javascript
+   let button = document.getElementById("myButton");
+
+   function handleClick() {
+       console.log("Button clicked!");
+   }
+
+   button.addEventListener("click", handleClick);
+
+   button.removeEventListener("click", handleClick);
+   button = null; // Both button and listener are now eligible for garbage collection
+   ```
+
+4. **Temporary Variables**  
+   Variables inside block scopes (`let` and `const`) that aren’t returned or captured by closures:
+
+   ```javascript
+   {
+       let temp = "I'm temporary";
+   }
+   // 'temp' is cleaned up after the block executes
+   ```
+
+---
+
+### ❌ Not Removed and Stays in Memory:
+1. **Global Variables**  
+   Variables declared in the global scope remain until the page is closed or refreshed:
+
+   ```javascript
+   var globalVar = "I live forever";
+   ```
+
+2. **Captured by Closures**  
+   Variables kept alive by functions that reference them:
+
+   ```javascript
+   function outer() {
+       let name = "Bob";
+       return function inner() {
+           console.log(name); // 'name' stays in memory due to closure
+       };
+   }
+
+   const myFunc = outer();
+   ```
+
+3. **Detached DOM Elements with Listeners**  
+   If you forget to remove event listeners before removing an element from the DOM:
+
+   ```javascript
+   let div = document.createElement("div");
+
+   function onClick() {
+       console.log("Clicked!");
+   }
+
+   div.addEventListener("click", onClick);
+   document.body.removeChild(div); // 'div' and 'onClick' stay in memory
+   ```
+
+---
+
+**In short:**  
+Code that’s **no longer referenced anywhere** gets cleaned up. But **closures, global variables, and attached event listeners** often keep memory from being freed — that’s when **system/Context** retains them. Let me know if you want me to dive deeper into any of these! 🚀

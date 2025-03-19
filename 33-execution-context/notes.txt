@@ -4,7 +4,7 @@ There are two phases in execution context:-
 
 in memory Creation phase memory is provided to our variables and store undefined to it.and in code execution pahse every variable get his actual value.
  
-every function which we create has its own execution context in which his variable are created.
+every function which we create has its own local execution context in which his variable are created.
 var firstName = 'Akash'
 let lastName = 'Singh'
 function sayHi(){
@@ -22,7 +22,7 @@ let lastName = 'Singh'
 
 we can watch its step by step execution pase in chrome developer tools tab "source" with applying debugger in code.
 
-this type of code is execute in script object in scrope tab.
+this type of code is execute in script object in scrope tab(is let or const applied).
 var firstName = 'Akash'
 let lastName = 'Singh'
 but in case of function, like:-

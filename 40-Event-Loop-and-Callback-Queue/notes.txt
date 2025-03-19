@@ -19,7 +19,7 @@ for(let i=1;i<=4;i++){
     
 }
 console.log("hi-2")```
-first print hi-1 and then run function and then 4 times print value of i and then print  "hi-3".This code print line by line.
+first print hi-1 and then run function and then 4 times print value of i,then print hi-2,and then print  "hi-3".This code print line by line.
 But in case of setTimeOut there is a different scenerio,although we give  ready made function of setTimeOut to js, but during calling this high-order function,it does not go to call-stack tab in browser,instead it goes in some other place.
 instead of give output of above code like execute line by line 
 ```
@@ -40,10 +40,10 @@ hi-1
 hi-2
 hi-3
 ``` 
-why value in highorder function come in last,this is because code instead of high-order function is a syncrous code which is execute line by line,which is execute line by line with one stack,so they print sequently but in case if high order it first send to web apis,where it wait till given time,after its code send to CallBack Queue,and event loop,event loop wait for empty call-stack,when call become free after execution of all syncrous code,then event loop, get function from callback back queue and provide them to call-stack, then its inner code come in call-stack and execute.that is why it come in last.
+why value in highorder function come in last,this is because code instead of high-order function is a syncrous code which is execute line by line,which is execute line by line with one stack,so they print sequently but in case if setTimeOut() it first send to web apis,where it wait till given time,after its code send to CallBack Queue,and event loop,event loop wait for empty call-stack,when call become free after execution of all syncrous code,then event loop, get function from callback back queue and provide them to call-stack, then its inner code come in call-stack and execute.that is why it come in last.
 
 
-JS put this highordern function in web apis insead of call-stack.journey of higher function execution is like web apis>callback queues>event loop>call-stack,while syncronous directly goes in call-stack.callback-queue work according to fifo(first come first out) form. but we apis send function according to their time, if function complete its time first then reach at call back queue first,if we write code 
+JS put this setTimeOut() function in web apis insead of call-stack.journey of higher function execution is like web apis>callback queues>event loop>call-stack,while syncronous directly goes in call-stack.callback-queue work according to fifo(first come first out) form. but we apis send function according to their time, if function complete its time first then reach at call back queue first,if we write code 
 ```
 function one(){
     console.log("one")
@@ -187,5 +187,7 @@ Even with 0ms delay, they don’t run immediately. JavaScript first finishes all
 
 To visualize how this works, check out this website: [http://latentflip.com/loupe/](http://latentflip.com/loupe/). It shows how synchronous and asynchronous code execute step by step.
 
+To visualize also microtask queue with it it visist website:[https://www.jsv9000.app/]
 
+or can watch very informative video:-https://www.youtube.com/watch?v=eiC58R16hb8
 <detail content end>

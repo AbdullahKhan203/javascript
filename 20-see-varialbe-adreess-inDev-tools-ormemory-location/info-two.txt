@@ -1,0 +1,119 @@
+Q:- Exaplle of code does not clean from memory and how to clearn up properly?
+
+# Understanding system/Context and Garbage Collection in JavaScript
+
+## 1️⃣ What is system/Context in JavaScript?
+
+In JavaScript, **system/Context** represents a special execution environment created by the JavaScript engine (like Chrome’s V8). It holds variables, functions, and closures when they are still accessible and referenced somewhere in your code.
+
+When you see something like this in the Memory tab in DevTools:
+```
+name in system/Context@12345
+```
+It means:
+- **name**: The variable being stored.
+- **system/Context**: The environment where this variable is kept alive.
+- **@12345**: A unique memory address identifying this specific context.
+
+This context often shows up when:
+- Variables are **tied to closures**.
+- **Event listeners** reference variables that haven’t been cleaned up.
+- **Global objects** retain their references.
+
+---
+
+## 2️⃣ How system/Context Works: Code Example
+
+Let’s take a closure example:
+
+```javascript
+function outer() {
+    let name = "Alice"; // Captured by the closure
+    return function inner() {
+        console.log(name); // 'inner' keeps 'name' alive
+    };
+}
+
+const myFunc = outer(); // 'name' stays in memory because of the closure
+myFunc();
+```
+
+What’s happening here:
+- `outer()` creates a variable `name`.
+- `inner()` captures `name` in a closure.
+- As long as `myFunc` references `inner`, the `name` variable stays in memory.
+
+In DevTools > Memory > Heap Snapshot, you’ll see:
+```
+name in system/Context@56789
+```
+
+---
+
+## 3️⃣ How to Clean Up and Trigger Garbage Collection
+
+When we remove the reference to `inner()`, the closure and the `name` variable can finally be garbage collected.
+
+```javascript
+myFunc = null; // Removing the reference to 'inner'
+```
+
+Now:
+- `inner` function is no longer accessible.
+- `name` is no longer referenced and can be cleaned up.
+
+If you take a **heap snapshot** and search for `"Alice"`, it won’t appear because the memory has been freed.
+
+---
+
+## 4️⃣ Real-World Example: Event Listener and Memory Leak
+
+Let’s see how an event listener can cause a memory leak:
+
+```javascript
+let button = document.getElementById("myButton");
+
+function handleClick() {
+    console.log("Button clicked!");
+}
+
+button.addEventListener("click", handleClick);
+
+// Later, we remove the button but forget the listener
+document.body.removeChild(button);
+```
+
+**What happens:**
+- `button` is removed from the DOM.
+- But `handleClick` still references the button in memory.
+- `button` and its listener stay in memory — **causing a memory leak**.
+
+**Fixing the memory leak:**
+
+```javascript
+button.removeEventListener("click", handleClick);
+button = null; // Now the button and listener can be garbage collected
+```
+
+Once we remove the listener and clear the reference, both the button and the function become eligible for garbage collection.
+
+---
+
+## 5️⃣ How to Debug with DevTools
+
+1. **Open DevTools:** Go to Memory > Take Heap Snapshot.
+2. **Search for Variables:** Look for strings like `"Alice"` or object names.
+3. **Check Retainers:** See what’s keeping them alive.
+4. **Clean Up:** Ensure you remove event listeners and clear closures when no longer needed.
+
+---
+
+## 6️⃣ Final Thoughts
+
+- `system/Context` keeps variables alive when still referenced.
+- Closures and event listeners are common causes of memory leaks.
+- Properly removing references helps garbage collection do its job.
+- Use DevTools to monitor memory usage and avoid leaks.
+
+Let me know if you’d like more examples or help with debugging memory issues! 🚀
+

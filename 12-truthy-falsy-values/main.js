@@ -27,9 +27,9 @@ if (0) {
     console.log("This will be logged because 1 is truthy.");
   }
   
-  if ("") {
+  if ("") {           
     console.log("This won't be logged because an empty string is falsy.");
-  }
+  }    //space string like " " (a string containing only spaces) is considered truthy
   
   if ("hello") {
     console.log("This will be logged because a non-empty string is truthy.");
@@ -73,7 +73,7 @@ if (userInput) {
 // You can use the logical OR (||) operator to provide default values:
 let userName = null; // Falsy value
 let defaultName = "Guest";
-
+// The || (OR) operator returns the first truthy value,if we give also default name null or other falsy value,if  both are falsy, it just returns the second one, defaultName.if defaultName is also null, the final output is null
 let displayName = userName || defaultName;
 console.log(displayName); // Output: "Guest"
 
@@ -84,3 +84,4 @@ let isAuthenticated = false; // Falsy value
 let userRole = isAuthenticated && "Admin";
 
 console.log(userRole); // Output: false
+

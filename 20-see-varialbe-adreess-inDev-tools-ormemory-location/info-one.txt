@@ -1,0 +1,61 @@
+- It’s where **variables, functions, and closures are stored** — especially when they’re still **referenced** and **accessible** somewhere in your code.  
+- This context often shows up when variables are **tied to global objects** (like `window`), **closures**, or **event listeners** that haven’t been cleaned up.
+ if this mean when our code run,after the memory clearn up, but these are not cleaned?
+ Ans:-Exactly — you’re right! Let’s clarify this step by step.  
+
+When JavaScript runs, the **garbage collector (GC)** automatically cleans up **variables, functions, and objects** from memory when they’re **no longer accessible** — meaning no part of your code still references them.  
+
+But when you see variables in **"system/Context"** in the **Memory tab** after cleanup, it means:  
+
+1. **They haven’t been cleaned up because something still references them**.  
+2. **JavaScript’s garbage collector can only clean up memory when there are no more references to an object**.  
+3. **system/Context holds onto variables, functions, and closures if they’re still accessible somewhere in your code** — even if you think they should be gone.  
+
+**For example:**  
+
+```javascript
+function outer() {
+    let name = "Alice"; // Captured by the closure
+    return function inner() {
+        console.log(name); // 'inner' keeps 'name' alive
+    };
+}
+
+const myFunc = outer(); // 'name' is still accessible through 'myFunc'
+```
+
+- Even after `outer()` finishes running, the `name` variable **isn't cleaned up**.  
+- Why? Because the `inner` function **still has access to it** via the closure.  
+- So the `name` variable stays in memory inside **system/Context**.  
+
+**When would this become a memory leak?**  
+
+If you **keep creating closures** or **attaching event listeners** without removing them, those variables stick around — even when they **should have been garbage collected**.  
+
+```javascript
+let button = document.getElementById("myButton");
+
+function handleClick() {
+    console.log("Button clicked!");
+}
+
+// Even after removing the button from the DOM, 'handleClick' keeps it in memory
+button.addEventListener("click", handleClick);
+document.body.removeChild(button); 
+```
+
+Here, even after the button is gone from the page, it **stays in memory** because the `handleClick` function **still references it**.  
+
+**How to fix it:**  
+```javascript
+button.removeEventListener("click", handleClick);
+button = null; // Now the button and its listener can be garbage collected
+```
+
+So when you see variables in **system/Context** after memory cleanup, it often means:  
+- There’s still **some reference to them** somewhere in your code.  
+- JavaScript **can’t clean them up** because they’re **still accessible** from some function, object, or listener.  
+
+Let me know if you want me to dive deeper into **garbage collection**, **heap snapshots**, or **memory leak fixes**! 🚀  
+
+

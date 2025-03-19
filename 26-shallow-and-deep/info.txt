@@ -188,7 +188,7 @@ console.log(b); // 20
 
 ## **2. Non-Primitive Data Types (Stored in Heap Memory)**
 Objects, arrays, and functions are stored in **heap memory**, while **variables hold only a reference (memory address) to the actual data**.
-
+//learn above above line in info-two.txt.
 ### **Shallow Copy (Same Memory Address)**
 A shallow copy means that **the new variable holds the same memory address as the original variable** instead of creating a new object.
 

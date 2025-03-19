@@ -1,5 +1,5 @@
 arguments keyoword is a keyoword that we can get in functon in javascript except arrow function.Basically it looks like an array but actually it is not an array,becayse we can't apply array methods like mapp,filter,find and other array methods on it.for apply aray methods we first convert it into array with like ```let arr=[...arguments]``` then we will be able to apply array methods on it.
-its work is to get parameters from function even if we dont neet that parameters in funtion,if we apply parameters in function,No matter how many parameters we apply in  function it get whole paramets and add them into array like object with same indexing as array.then we  can use that parameters in function. 
+its work is to get parameters from function even if we dont neet that parameters in funtion,if we give arguments in function,No matter how many arguments we apply in  function it get whole arguments and add them into array like object with same indexing as array.then we  can use that parameters in function. 
 e.g:-
 
 
@@ -35,7 +35,7 @@ console.log(addResultWithReduce);
 }
 
 task(1,2,3,4)```
-in above example we dont pass parameter in ```function task(params)``` still we can receive arguments in funciotn,we oly pass arguments while calling.
+in above example we dont pass parameter in ```function task(params)``` still we can receive arguments in funciotn,we only pass arguments while calling.
 we can get arguments in form of indexing.
 
 

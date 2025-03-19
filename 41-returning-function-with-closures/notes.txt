@@ -25,7 +25,7 @@ const b = 6
 now variable a and b become property of parent function,now we can watch closures in scope tab,closure is become when we return inner functon from outer function and  child function use anything of parent function like add function use a and b variable of parent function.
 in closure object we know that it is closure of parent function and value use by child function {a: 4, b: 6} of parent function.
 
-Remember:- in normal scenerio(without closure),this {a: 4, b: 6} would delete after execution phase from scope,but in case of closure  this {a: 4, b: 6} which is parent of parent function  is save in scope object and not clear by memory after code execution phase.
+Remember:- in normal scenerio(without closure),this {a: 4, b: 6} would delete after execution phase from scope,but in case of closure  this {a: 4, b: 6} which is part of parent function  is save in scope object and not clear by memory after code execution phase.
 
 If we make function in this way like 
 ```

@@ -38,4 +38,4 @@ for(const key of person) {
 
  note:- acutally for in loop is bit time consuming,so we should not use in on big object.instead we should use it another method  Object.keys(person) because it is faster than for in loop.if we need only values then we can use Object.values(person), if we need both then we can use Object.entries(person).
 
- remember:- in keyword in object to check particular key is presned or not and for in are totally different not same.
+ remember:- in keyword use in object to check particular key is presned or not and for-in loop are totally different not same.

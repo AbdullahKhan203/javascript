@@ -1,0 +1,254 @@
+Q:-what are the things goes in web api instead of sysnchronously running?
+Ans:-In JavaScript, **Web APIs** handle certain tasks asynchronously instead of running in the **call stack** synchronously. These tasks are managed by the browser (not the JavaScript engine) and include:  
+
+### **Things That Go to Web APIs Instead of Running Synchronously:**
+
+### 1️⃣ **setTimeout() and setInterval()**
+- **setTimeout()**: Runs a function after a specified delay.
+- **setInterval()**: Repeats a function at a set interval.
+  
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Delayed Message");
+}, 2000);
+
+console.log("End");
+
+// Output:
+// Start
+// End
+// (After 2 seconds) Delayed Message
+```
+➡️ **Why?**  
+- The callback function is sent to the Web API.
+- It waits for the timer to finish.
+- Once the timer completes, the function moves to the **Callback Queue** and waits for the **Call Stack** to be free.
+
+---
+
+### 2️⃣ **DOM Events (click, scroll, keypress, etc.)**
+- Event listeners are handled by the browser, not directly by JavaScript.
+
+```javascript
+document.getElementById("btn").addEventListener("click", () => {
+    console.log("Button Clicked!");
+});
+```
+➡️ **Why?**  
+- The event is registered in the Web API.
+- When the event (like a click) occurs, the callback is sent to the **Callback Queue**.
+- The **Event Loop** waits for the **Call Stack** to be empty before executing the function.
+
+---
+
+### 3️⃣ **Fetch API & XMLHttpRequest (AJAX calls)**
+- Used for making HTTP requests.
+
+```javascript
+console.log("Start");
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then(response => response.json())
+    .then(data => console.log(data));
+
+console.log("End");
+
+// Output:
+// Start
+// End
+// (After some time) {id: 1, title: "delectus aut autem", completed: false}
+```
+➡️ **Why?**  
+- The browser handles the HTTP request in the Web API.
+- Once the request completes, the response is sent to the **Microtask Queue** (higher priority than the Callback Queue).
+- The **Event Loop** waits for the Call Stack to be empty before running the `.then()` function.
+
+---
+
+### 4️⃣ **Promises & async/await**
+- Promises are also **asynchronous** and handled in the **Microtask Queue**.
+
+```javascript
+console.log("Start");
+
+new Promise((resolve) => {
+    resolve("Promise Resolved!");
+}).then((msg) => console.log(msg));
+
+console.log("End");
+
+// Output:
+// Start
+// End
+// Promise Resolved!
+```
+➡️ **Why?**  
+- The `.then()` callback goes into the **Microtask Queue**.
+- Microtasks have **higher priority** than Callback Queue tasks like `setTimeout()`.
+
+---
+
+### 5️⃣ **Geolocation API**
+- Used to get the user’s location.
+
+```javascript
+navigator.geolocation.getCurrentPosition((position) => {
+    console.log(position.coords.latitude, position.coords.longitude);
+});
+```
+➡️ **Why?**  
+- This request is handled in the **Web API**.
+- Once completed, it moves the callback to the **Callback Queue**.
+
+---
+
+### 6️⃣ **WebSockets & Server-Sent Events**
+- Used for real-time communication with servers (e.g., chat apps).
+
+```javascript
+const socket = new WebSocket("wss://example.com/socket");
+
+socket.onmessage = (event) => {
+    console.log("Message from server:", event.data);
+};
+```
+➡️ **Why?**  
+- The WebSocket connection is managed by the browser.
+- When a message arrives, the callback is sent to the **Callback Queue**.
+
+---
+
+### **How Everything Flows:**
+1. Synchronous JavaScript runs first (Call Stack).
+2. Asynchronous tasks (setTimeout, fetch, events, etc.) are sent to the Web API.
+3. Once completed, they move to:
+   - **Microtask Queue** (Promises, Mutation Observers).
+   - **Callback Queue** (setTimeout, events, WebSockets).
+4. The **Event Loop** pushes them to the Call Stack when it's empty.
+
+---
+
+### **Final Example:**
+```javascript
+console.log("1");
+
+setTimeout(() => console.log("2"), 0);
+
+Promise.resolve().then(() => console.log("3"));
+
+console.log("4");
+```
+
+#### **Output:**
+```
+1
+4
+3
+2
+```
+
+#### **Explanation:**
+1. `console.log("1")` → Runs immediately.
+2. `setTimeout(..., 0)` → Goes to the Web API.
+3. `Promise.resolve().then(...)` → Goes to the **Microtask Queue**.
+4. `console.log("4")` → Runs immediately.
+5. **Microtask Queue runs first** → `console.log("3")` runs.
+6. **Callback Queue runs next** → `console.log("2")` runs.
+
+---
+
+### **Conclusion**
+- **Synchronous code (normal JavaScript) runs first.**
+- **Asynchronous tasks go to the Web API.**
+- **Microtask Queue (Promises) runs before Callback Queue (setTimeout, events).**
+- **Event Loop moves tasks to the Call Stack when it’s free.**
+
+Would you like a visual tool to see this in action? Try **[latentflip.com/loupe](http://latentflip.com/loupe/)**. 🚀
+
+
+Q:-give me list of whole that goes to web apis instead of run synhronously?
+Ans:-Here’s a **complete list** of things that go to the **Web APIs** instead of running synchronously in JavaScript:  
+
+---
+
+### **1️⃣ Timers**  
+- `setTimeout(callback, delay)` → Executes the callback after a delay.  
+- `setInterval(callback, interval)` → Executes the callback repeatedly at fixed intervals.  
+- `setImmediate(callback)` *(Node.js only)* → Executes the callback after the current execution.  
+
+---
+
+### **2️⃣ DOM Events (Event Listeners)**
+- `document.addEventListener("click", callback)`  
+- `document.addEventListener("keydown", callback)`  
+- `document.addEventListener("scroll", callback)`  
+- `document.addEventListener("resize", callback)`  
+- Any event (like `onload`, `onsubmit`, etc.) goes to **Web APIs** and waits for execution.  
+
+---
+
+### **3️⃣ Networking & APIs**
+- `fetch(url).then(callback)` (uses **Microtask Queue**)  
+- `XMLHttpRequest` (older way of making HTTP requests)  
+- `WebSockets` (`new WebSocket(url)`)  
+- `Server-Sent Events (SSE)` (`new EventSource(url)`)  
+- `navigator.sendBeacon()`  
+
+---
+
+### **4️⃣ Promises & Async/Await**  
+- `Promise.resolve().then(callback)` (goes to **Microtask Queue**)  
+- `Promise.reject().catch(callback)`  
+- `async function` and `await` → Uses **Microtask Queue**  
+
+---
+
+### **5️⃣ Geolocation API**  
+- `navigator.geolocation.getCurrentPosition(callback)`  
+- `navigator.geolocation.watchPosition(callback)`  
+
+---
+
+### **6️⃣ Web Workers (Multi-threading in JavaScript)**  
+- `new Worker("worker.js")` → Runs a separate JavaScript thread.  
+- `worker.postMessage(data)` → Sends messages between worker and main thread.  
+
+---
+
+### **7️⃣ IndexedDB (Browser Database)**
+- `indexedDB.open("dbName")`  
+- Asynchronous database storage in the browser.  
+
+---
+
+### **8️⃣ File & Media APIs**
+- `FileReader.readAsText(file)`  
+- `FileReader.readAsDataURL(file)`  
+- `navigator.mediaDevices.getUserMedia()` (for accessing camera/mic)  
+- `navigator.clipboard.readText()` (reading from clipboard)  
+
+---
+
+### **9️⃣ Animation & Rendering**
+- `requestAnimationFrame(callback)` → Runs before the next repaint of the page.  
+- `requestIdleCallback(callback)` → Runs when the browser is idle.  
+
+---
+
+### **🔟 Other Asynchronous APIs**
+- `setImmediate(callback)` *(Node.js only)*  
+- `process.nextTick(callback)` *(Node.js, runs before Microtask Queue tasks)*  
+- `MutationObserver.observe()` (Detects changes in the DOM, uses **Microtask Queue**).  
+
+---
+
+### **Execution Order:**
+1️⃣ **Synchronous Code** (Runs first in the Call Stack)  
+2️⃣ **Microtask Queue** (Promises, async/await, MutationObserver)  
+3️⃣ **Callback Queue** (setTimeout, events, WebSockets, etc.)  
+4️⃣ **Rendering & Repainting** (requestAnimationFrame)  
+
+Would you like any specific example for one of these? 🚀
+

@@ -1,0 +1,28 @@
+Q:-What is the purpose of take heap snapshot?
+Ans:-The **“Take Heap Snapshot”** feature in Chrome DevTools (Memory tab) helps you **analyze and debug memory usage** in your JavaScript code. Its main purpose is to show what’s currently in memory and **why it’s still there** — super useful for finding **memory leaks** and understanding how your app manages memory.
+
+Here’s what you can do with a **heap snapshot**:
+
+1. **Find Memory Leaks**  
+   If memory usage keeps growing without going down, there’s likely something staying in memory when it shouldn’t. Heap snapshots show **which objects and variables haven’t been garbage collected**, so you can figure out **what’s keeping them alive**.
+
+2. **Track Retained Objects**  
+   You can see which objects, variables, and closures are **still referenced**, and which **parent objects are holding them in memory** (the **Retainers** tab). This helps you understand why something hasn’t been cleaned up.
+
+3. **Understand system/Context**  
+   Heap snapshots show when variables stay in **system/Context** — meaning they’re still referenced, often through **closures**, **event listeners**, or **global objects**.
+
+4. **Compare Memory Usage Over Time**  
+   By taking multiple snapshots, you can **compare them** to see **what objects remain in memory** and whether memory usage is going up without coming back down.
+
+5. **Spot Detached DOM Elements**  
+   If you remove an element from the DOM but forget to remove event listeners or references to it, the element **stays in memory**. A heap snapshot lets you **search for those elements** and figure out **what’s keeping them alive**.
+
+**How to take a heap snapshot:**
+1. Open **Chrome DevTools** (`Ctrl + Shift + I` or `Cmd + Shift + I` on Mac).
+2. Go to the **Memory** tab.
+3. Select **Heap Snapshot** and click **“Take Snapshot”**.
+4. Once the snapshot loads, **search for variables, objects, or strings** in memory.
+5. Use the **Retainers panel** to see **what’s keeping them from being garbage collected**.
+
+Let me know if you want me to guide you through reading a heap snapshot or analyzing memory leaks! 🚀

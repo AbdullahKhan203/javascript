@@ -47,7 +47,7 @@ similarly brower store other data types in other data types section.like seperat
 note:-system/context address and string address are different.
 When we compare tow variables, then through their address their values are fetched.and then their values are compared actually.
 
-Mostly our memory tab not display unmbers in number section.actually it considred very small to numbers that why it does not numbers. 
+Mostly our memory tab not display nunmbers in number section.actually it considred very small to numbers that why it does not numbers. 
 similarly boolean store in system group not boolean group.not in main system,but in system=> system / Oddball.
 When we  assign same boolean value to variable then it assign same address of old boolean to new boolean like
 const isGraguate=false;
@@ -152,7 +152,7 @@ isGraguate::system / Oddball@75 both false has same memory address.
 similarly if we assign same value to different variable 
 like ```const firstName="Akash";
 const firstName2="Akash";``` 
-then the both variable would have same address.
+then the both variable would have same memory address.
 in system / context:-
 firstName::"Akash"@55861
 6
@@ -176,7 +176,7 @@ this is because value is become by combining of "Aka" and "sh".this why it has d
 
 firstName==firstName2
 true
-these are are two variables that has same values but different address.
+these are are two variables that has same values but different address,its true is because in case of primitive types,js compare values,not memeory address.
 If we assing boolean value true, then  it has same fixed Address @73.
 the address of undefined,null,true,false have fixed address in memory.
 if we assign 
@@ -188,11 +188,12 @@ myEmptyString::""@77
 120 %	120 %	
 myEmptyString2::""@77
 empty string has fixed address @77.
-note:- the values that can't be change again and again has same address.
+
+note:- the values that can't be change again and again has same address.like null,undefined etc.
 
 
 remember for understanding of non-primirive types,it is important to have undersanding of varialbe address.
-in case of non-primitve type address beome more importtant.because in non-prmitive when we compare then it is not compare values instead it compare address.
+in case of non-primitve type address beome more importtant.because in non-prmitive when we compare two variables, then it is not compare values instead it compare address.
 In case of primitive variable address is not such important.You will not be able to do much by knowing address because address is different but when compare:-  
 const firstName="Akash";
 const firstName2="Aka"+"sh"; 
@@ -319,3 +320,44 @@ Understanding memory addresses helps avoid **unexpected behavior** when comparin
   - **Event Listeners** → Lists JavaScript events on elements.  
 
 These tools help developers inspect, modify, and debug web pages easily. 🚀.
+
+
+
+
+
+
+
+Q:-What is system/Context?
+Got it! Let’s focus on what **"system/Context"** really is in the **Memory tab** in DevTools.
+
+**What is "system/Context"?**  
+- **"system/Context"** is a **special environment** created by the **JavaScript engine** (like V8 in Chrome).  
+- It’s where **variables, functions, and closures are stored** — especially when they’re still **referenced** and **accessible** somewhere in your code.  
+- This context often shows up when variables are **tied to global objects** (like `window`), **closures**, or **event listeners** that haven’t been cleaned up.
+
+**Why do we see "system/Context@12345"?**  
+- `system/Context` → Tells you this variable lives inside a **particular execution environment**.  
+- `@12345` → A **unique memory address** of that context — a specific instance of an **execution scope**.
+
+**Example:**
+```javascript
+function outer() {
+    const secondName = "John"; // Stored in system/Context
+    return function inner() {
+        console.log(secondName); // inner keeps referencing 'secondName'
+    };
+}
+
+const myFunc = outer(); // 'secondName' stays in memory because of the closure
+```
+In a heap snapshot, you’d see something like:
+```
+secondName in system/Context@45678
+```
+This happens because the **inner function keeps a reference** to `secondName`, so its **context stays alive** even after `outer()` finishes running.
+
+**Why this is important:**  
+- **"system/Context"** can help you find **memory leaks** — like when variables are still referenced long after they should be cleaned up.  
+- If you see unexpected values in `system/Context`, **check their retainers** to find what’s holding onto them.
+
+Want me to help you investigate or clean up memory leaks? Just say the word! 🚀  

@@ -26,7 +26,7 @@ console.log("variable1",variable1);
 console.log("variable2",variable2);
 
 
-for making deep copy we can use method:- Object.assing(obj2,obj1)
+for making shallow copy we can use method:- Object.assing(obj2,obj1)
 by making deep copy with this method both object would have different adress.
 but latest method is spread operator.another method is concat method for make new array.
 like let newArr=[].contac(fruits) like this.anoter method is like let newArr=fruit.slice(), this method make deep of whole array.

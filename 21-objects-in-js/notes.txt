@@ -13,7 +13,7 @@ if console this empty object then we will get empty object in
 ``` Ans:-In JavaScript, every object has a prototype. A prototype is also an object. All JavaScript objects inherit their properties and methods from their prototype.
 
 The Object.prototype is the top-level prototype from which all objects inherit properties and methods. You can access an object's prototype using Object.getPrototypeOf(obj) or the __proto__ property.
-
+ 
 Here's an example:-
 const user = {};
 console.log(Object.getPrototypeOf(user)); // Outputs: {}
@@ -88,7 +88,7 @@ const user={firstName:"akash",lastName:"khan",age:24,isGraduate:false,isAdult:tr
 console.log("expression",user["first"+"Name"]);
 
 
-we can also add property and value in object from outside object like.
+we can also add property and value in object from outside(run time) object like.
 user.age=25;
 console.log(user.age);
 

@@ -4,19 +4,21 @@ Ans:- global scope found in 2 catagories
 Window is an object in which our whole varibales and functions found.we get this by window.add()
 during memory crea phase whole code create his memory so we get whole code in window object.
 
-The variables which is in Window object or Script scope,we can use any where i program.
+The variables which is in Window object or Script scope,we can use any where in program.
 What are difference between thses two?
 1)let and const varibles goes to script scope || var object goes to window object.
 actually variables created by var can access by
  window.a  //50
   because the in window object.but variables that are created with let and const are in script scope.variables that are created with let and const cannot be excessable in window object.
-  if we try to excess variables that are created with let and const variable, we get undefined.
-  a variable create in global-scope>window-object while username and userage in   global-scope>script-scope.
+  if we try to excess variables that are created with let and const variable in window object we get undefined, we get undefined.
+  a variable created with var and functions in global-scope>window-object while username and userage in   global-scope>script-scope.
 
-  the variables that are in global scope can be excessabel any were in program.but the diff is that var creaed varaibles can get by window.a and with out var can't get by window.username and window.userage.
+  note:- the functions and variable(except let or const) that we create can excessable in window object.
+
+  the variables that are in global scope can be excessabel any were in program.but the diff is that var creaed varaibles can get by window.a and without var can't get by window.username and window.userage.
   the function of whole page also include in window ojbect, which we can get by widow.add();
 
-When we call add function in js like add(); then its scope in created in scope tab in source tab of developer tools.its scope name is "local" which is actually an object,which is called local scope of add function.which contain this object in it. This local scope contains inner context of add function like add function is :-
+When we call add function in js like add(); then its local scope in created in scope tab in source tab of developer tools.its scope name is "local" which is actually an object,which is called local scope of add function.which contain "this" object in it. This local scope contains inner context of add function like add function is :-
 ```function add(){
     const x=5;
     const y=8;

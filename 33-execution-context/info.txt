@@ -53,3 +53,6 @@ greet(); // 'greet' execution context is pushed onto the call stack and then rem
 ```
 
 Let me know if you’d like me to dive deeper into any part of this! 🚀
+
+
+note:-js is a synschronous single threaded language,means that it can only go to the next line once the current line has been finished executing
