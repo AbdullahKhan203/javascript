@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    height: 100vh;
+    width: 100%;
+    background: #f2f9ed;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+.heading{
+    margin-top: 36px;
+    font-family: "Poppins", sans-serif;
+   
+}
+.first{
+    color: #48A300;
+}
+.second{
+    color: #61481c;
+}
+.main{
+    /* margin-top: 125px; */
+    /* height: 300px; */
+    padding: 40px 30px;
+    /* border: 1px solid black; */
+    width: 40%;
+    /* flex: 1 0 auto; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 30px;
+}
+
+.card-heading{
+    /* border: 2px solid red; */
+    display: flex;
+    gap: 8px;
+    justify-content: start;
+    align-items: center;
+    height: 200px;
+    height: auto;
+    
+}
+.card-heading .card-heading-text{
+   font-size: 32px;
+}
+
+.instruction-one{
+    font-size: 14px;
+}
+
+.progressbar{
+    width: 100%;
+    height: 20px;
+    background-color: #e9f2e2;
+    border-radius: 15px;
+}
+
+.progress{
+    /* width: 33.333%; */
+    /* width: 33.33%; */
+    background-color: #48a300;
+    height: 20px;
+    border-radius: 15px;
+}
+
+
+.task-div{  
+    border: 0.5px solid grey;
+    height: 45px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* gap: 2px; */
+    padding: 10px 10px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.task-div .radio{
+   height: 40px;
+   position: absolute;
+   /* left:10; */
+   opacity: 0;
+}
+.task-div .description{
+   height: 80px;
+  width:100%;
+  padding:5px 20px;
+}
+.task-div .description{
+    height: 20px;
+    border: none; 
+    outline: none;
+    color: #48a300;
+    font-size: 16px;
+}
+
+.task-div label{
+    display: inline-block;
+    border-radius:50%;
+    height: 22px;
+    width: 22px;
+    border: 2px solid #61481C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+}
+
+.custom-checkbox{
+    /* border: 2px solid red; */
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+}
+
+.custom-checkbox .radio:checked + label{
+    background-color: #48A300;
+    
+}
+
+
+.instruction-three{
+    text-align: center;
+    margin: 20px 0;
+}
+
+.footer{
+    text-align: center;
+    color: #858585;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
+
+

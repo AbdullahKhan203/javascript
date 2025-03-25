@@ -1,7 +1,7 @@
 let tasks=[];
 let addTaskBtn=document.querySelector('#addButton')
 
-console.log(addTaskBtn)
+console.log("addTaskBtn",addTaskBtn)
 
 
 function displayTasks(){
