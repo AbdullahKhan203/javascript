@@ -3,6 +3,7 @@ const isoDate='2025-05-03T05:09:30.624Z'
 console.log(myDate)   //in form of object
 
 // console.log(myDate.toLocaleString());   //5/2/2025, 11:24:11 PM  ...  mm/dd//yyyy 
+// console.log(myDate.toLocaleDateString());   //if we need only time not date
 // console.log(myDate.toLocaleString('en-GB'));  //02/05/2025, 23:26:41  ...  dd/mm//yyyy
 // for 12 hour format
 // console.log(myDate.toLocaleString('en-GB',{hour12:true}));   //2/5/2025, 11:24:11 PM  ...  dd/mm//yyyy + 12 hour format
@@ -43,6 +44,29 @@ console.log("UTC seconds",myDate.getUTCSeconds()); //gives UTC seconds
 console.log("local Milliseconds",myDate.getMilliseconds()); //gives local Milliseconds
 console.log("UTC Milliseconds",myDate.getUTCMilliseconds()); //gives UTC Milliseconds
 console.log("timestamp",myDate.getTime()); //for getting timestamp in millisecond
+
+
+
+// if we keep timestamp in new Date(),the we get the current time stamp in string mode,means not in millisecond, but in manula time,
+let captureTimeStamp=new Date(1746348616081)
+console.log(captureTimeStamp.toString());
+console.log(captureTimeStamp.getMinutes());
+console.log(captureTimeStamp.getSeconds());
+
+
+
+
+
+
+let zeroTime=new Date(0)
+console.log(zeroTime.toString());
+console.log(zeroTime.toUTCString());
+
+
+
+
+
+
 
 
 
